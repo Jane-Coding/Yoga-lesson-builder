@@ -1,9 +1,9 @@
 
-async function fetchData(url, id){
+async function fetchData(url, id=null){
     try {
-        const response = await fetch(`${url}/${id}`)
+        const response = await fetch(url)
         const data = await response.json()
-        return data
+        return data        
     }
     catch(err){
         console.log(err);

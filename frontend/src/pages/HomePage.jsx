@@ -3,23 +3,26 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import Navbar from '../components/Navbar';
-import SessionCard from '../components/SessionCard';
+import SessionCard from '../components/LessonCard';
 
 import { useEffect, useState } from 'react';
 
 
 function HomePage() {
-    const [lesson, setLesson] = useState([])
-    const [lessonDefault, setLessonDefault] = useState([])
+    const [lessons, setLessons] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:8080/userSessions')
-        .then(res => res.json())
-        .then(data => setLesson(data)),
 
-        fetch('http://localhost:8085/defaultSessions')
-        .then(res2 => res2.json())
-        .then(data => setLessonDefault(data))
+        const getLessonsList = async () => {
+            const response = await fetch('http://localhost:8085/api/lessons')
+            const lessonsList = await response.json()
+
+            if(response.ok){
+                setLessons(lessonsList)
+            }
+        }
+
+        getLessonsList()
 
     }, [])
 
@@ -31,19 +34,18 @@ function HomePage() {
                 <Typography variant="h4">
                     Created sessions
                 </Typography>
-                
-                {lesson.map(el => {
-                    return <SessionCard session={el}/>
-                })}                   
-                
+
+                {lessons && lessons.map(lesson => 
+                    <SessionCard key={lesson._id} lesson={lesson}></SessionCard>
+                )}
 
                 <Typography variant="h4">
                     Default sessions
                 </Typography>
 
-                {lessonDefault.map(el => {
+                {/* {lessonDefault.map(el => {
                     return <SessionCard session={el}/>
-                })}
+                })} */}
             </Stack>
         </Container>
         </>           
