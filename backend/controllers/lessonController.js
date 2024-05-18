@@ -24,10 +24,10 @@ const getOneLesson = async (req, res) => {
 }
 
 const createLesson = async (req, res) => {
-    const {title, description} = req.body
+    const {title, description, poses} = req.body
     
     try{
-        const lesson = await Lesson.create({title, description})
+        const lesson = await Lesson.create({title, description, poses})
         res.status(200).json(lesson)
     }catch(error){
         res.status(400).json({error: error.message})
