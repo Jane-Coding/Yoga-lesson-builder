@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import Navbar from '../components/Navbar';
-import SessionCard from '../components/LessonCard';
+import LessonCard from '../components/LessonCard';
 
 import { useEffect, useState } from 'react';
 
@@ -36,7 +36,7 @@ function HomePage() {
                 </Typography>
 
                 {lessons && lessons.map(lesson => 
-                    <SessionCard key={lesson._id} lesson={lesson}></SessionCard>
+                    <LessonCard key={lesson._id} lesson={lesson}></LessonCard>
                 )}
 
                 <Typography variant="h4">

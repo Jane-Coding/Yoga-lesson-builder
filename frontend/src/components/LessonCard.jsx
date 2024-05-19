@@ -53,7 +53,7 @@ function LessonCard({lesson}) {
                 <Grid item xs={6}>
                     <Grid container spacing={2} direction={'row-reverse'}>
                         <Grid item>
-                            <Button variant='contained' color='secondary' component={Link} to="lesson">Start Lesson</Button>
+                            <Button variant='contained' color='secondary' component={Link} to={`lesson/${lesson._id}`}>Start Lesson</Button>
                         </Grid>
                     </Grid>
                 </Grid>

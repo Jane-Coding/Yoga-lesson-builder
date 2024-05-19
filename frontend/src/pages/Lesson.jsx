@@ -15,84 +15,98 @@ import PauseIcon from '@mui/icons-material/Pause';
 
 import Navbar from '../components/Navbar';
 
-import fetchData from '../../scripts/fetchData'
+import { useParams } from 'react-router-dom';
 
 function Lesson() {
+  const { id } = useParams()
+
   const [progress, setProgress] = React.useState(0);
   const [pause, setPause] = React.useState(false)
 
-  const [lesson, setLesson] = React.useState(null)  
-  // const [isLoading, setIsLoading] = React.useState(true) 
+  const [lesson, setLesson] = React.useState(null)
+  let [currentPose, setCurrentPose] = React.useState(0)
+  const [posesArray, setPosesArray] = React.useState([])
 
   React.useEffect(()=> {
-    fetchData('http://localhost:8080/userSessions', 1).then(data => setLesson(data))
+    const getLessonsList = async() => {
+      const response = await fetch(`http://localhost:8085/api/lessons/${id}`)
+      const lessonsList = await response.json()
+      
+      if(response.ok){
+        setLesson(lessonsList)
+        setPosesArray(lessonsList.poses)
+      }
+    }
 
-  fetchData()
-
+    getLessonsList()
 
   }, [])
 
-
-  React.useEffect(() => {
+  React.useEffect( () => {
     const interval = setInterval(() => {
-      if(pause) { 
+      if(pause) {
         if (progress < 100) {
-          setProgress(progress + (100 / 60))
+          setProgress(progress + (100/60))
         }
+        else if (progress >= 100) {
+          setProgress(0)
+
+          if (currentPose >= posesArray.length-1){
+            setPause(!pause)
+            clearInterval(interval)
+          }
+
+          else {
+            currentPose ++
+            setCurrentPose(currentPose)
+          }
+        }        
       }
     }, 1000);
-    return () => clearInterval(interval);
+
+    return () => {
+      clearInterval(interval)};
   });
-  
+
   const handlePauseToggle = () => {
     setPause(!pause);
   }
 
-  return ( 
+  return (
       <>
       <Navbar/>
       <Container maxWidth='sm'>
+        <Card sx={{ maxWidth: "sm" , mt: "150px", }} >
+          <CardMedia
+              component="img"
+              alt="asana"
+              height="sm"
+              // image={asana}
+          />
 
-      <Card sx={{ maxWidth: "sm" , mt: "150px", }} >
-      <CardMedia
-          component="img"
-          alt="asana"
-          height="sm"
-          // image={asana}
-      />
+          <CardContent>
+            <LinearProgress variant="determinate" value={progress} color='secondary'/>
+            <Typography gutterBottom variant="h5" component="div">
+              {lesson && posesArray[currentPose].pose}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {lesson && lesson.title}
+            </Typography>
+          </CardContent>
 
-      <CardContent>
-      <LinearProgress variant="determinate" value={progress} color='secondary'/>
-      <Typography gutterBottom variant="h5" component="div">
-        {/* {lesson && lesson.name} */}
-        {/* {lesson && lesson.title} */}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {/* {lesson && lesson.asanas.map(el=>el.asanaName)} */}
-        {lesson && lesson.title}
-      </Typography>
-      </CardContent>
+          <CardActions sx={{display: 'flex', justifyContent: 'center'}}>
+            <Box sx={{display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+              <IconButton aria-label="play/pause" color='secondary' onClick={()=> handlePauseToggle()}>
+                {pause ?
+                <PauseIcon sx={{ height: 60, width: 60 }} /> 
+                :
+                <PlayArrowIcon sx={{ height: 60, width: 60 }} />
+                }          
+              </IconButton>
+            </Box>      
+          </CardActions>
 
-      <CardActions sx={{display: 'flex', justifyContent: 'center'}}>
-      <Box sx={{display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-        <IconButton aria-label="play/pause" color='secondary' onClick={()=> handlePauseToggle()}>
-          {pause ?
-          <PauseIcon sx={{ height: 60, width: 60 }} /> 
-          :
-          <PlayArrowIcon sx={{ height: 60, width: 60 }} />
-          }
-          
-        </IconButton>
-
-
-      {/* <IconButton onClick={()=>console.log(fetchData())}>
-        <PauseIcon></PauseIcon>
-      </IconButton> */}
-      </Box> 
-     
-      </CardActions>
-      </Card>
-
+        </Card>
       </Container>
       </>
     );
