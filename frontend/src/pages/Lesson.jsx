@@ -14,6 +14,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
 import Navbar from '../components/Navbar';
+import EndLessonDialog from '../components/EndLessonDialog';
 
 import { useParams } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ function Lesson() {
   const [lesson, setLesson] = React.useState(null)
   let [currentPose, setCurrentPose] = React.useState(0)
   const [posesArray, setPosesArray] = React.useState([])
+  const [showDialog, setShowDialog] = React.useState(false)
 
   React.useEffect(()=> {
     const getLessonsList = async() => {
@@ -54,6 +56,7 @@ function Lesson() {
           if (currentPose >= posesArray.length-1){
             setPause(!pause)
             clearInterval(interval)
+            setShowDialog(true)
           }
 
           else {
@@ -108,6 +111,9 @@ function Lesson() {
 
         </Card>
       </Container>
+
+      <EndLessonDialog dialog={showDialog}/>
+
       </>
     );
 }
