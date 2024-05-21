@@ -12,8 +12,8 @@ export default function EndLessonDialog({dialog}) {
     <Dialog open={dialog} sx={{backdropFilter: "blur(5px)"}}>
       <DialogContent sx={{textAlign: "center"}}>
         <DialogTitle>Congratulations!</DialogTitle>
-        <DialogContentText>You finished lesson!</DialogContentText>
-        <Button component={Link} to="/" sx={{pt: "30px"}}>Back to Home Page</Button>
+        <DialogContentText sx={{pb: "20px"}}>You finished lesson!</DialogContentText>
+        <Button component={Link} to="/">Back to Home Page</Button>
       </DialogContent>
     </Dialog>
   </>
