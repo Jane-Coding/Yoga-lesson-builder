@@ -5,20 +5,21 @@ import Stack from '@mui/material/Stack';
 import Navbar from '../components/Navbar';
 import LessonCard from '../components/LessonCard';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
+import { useLessonsContext } from '../hooks/useLessonsContext';
 
 
 function HomePage() {
-    const [lessons, setLessons] = useState([])
+    const {lessons, dispatch} = useLessonsContext()
 
     useEffect(() => {
-
         const getLessonsList = async () => {
             const response = await fetch('http://localhost:8085/api/lessons')
             const lessonsList = await response.json()
 
             if(response.ok){
-                setLessons(lessonsList)
+                dispatch({type: 'SET_LESSONS', payload: lessonsList})
             }
         }
 
