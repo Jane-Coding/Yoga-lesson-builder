@@ -8,6 +8,10 @@ export const lessonsReducer = (state, action) => {
             return {
                 lessons: action.payload
             }
+        case 'DELETE_LESSON':
+            return {
+                lessons: state.lessons.filter( el => el._id !== action.payload._id)
+            }
         default:
             return state
     }

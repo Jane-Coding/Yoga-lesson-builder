@@ -9,7 +9,22 @@ import Grid from '@mui/material/Grid';
 
 import { Link } from "react-router-dom";
 
+import { useLessonsContext } from '../hooks/useLessonsContext';
+
 function LessonCard({lesson}) {
+    const { dispatch } = useLessonsContext()
+
+    const deleteLesson = async () => {
+        const response = await fetch('http://localhost:8085/api/lessons/' + lesson._id, {
+            method: 'DELETE'
+        })
+
+        const deletedLesson = await response.json()
+
+        if(response.ok){
+            dispatch({type: 'DELETE_LESSON', payload: deletedLesson})
+        }
+    }
     return ( 
         <Paper elevation={6} square={false} sx={{p: '10px'}}>
           <Grid container spacing={2}>
@@ -25,7 +40,7 @@ function LessonCard({lesson}) {
                       <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="edit">
                           <EditIcon/>
                       </IconButton>
-                      <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="delete">
+                      <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="delete" onClick={deleteLesson}>
                         <DeleteIcon />
                       </IconButton>
                       <Button variant="text">Preview</Button>
