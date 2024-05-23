@@ -46,7 +46,7 @@ function Navbar() {
               <MenuItem onClick={handleClose} component={Link} to="/">
                 Home
               </MenuItem>
-              <MenuItem onClick={handleClose} component={Link} to="constructor">
+              <MenuItem onClick={handleClose} component={Link} to="/create">
                 Create lesson
               </MenuItem>
               <MenuItem onClick={handleClose}>

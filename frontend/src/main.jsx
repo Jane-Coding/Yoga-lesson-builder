@@ -7,6 +7,7 @@ import './fonts.scss';
 import HomePage from './pages/HomePage';
 import ErrorPage from './pages/ErrorPage';
 import Lesson from './pages/Lesson';
+import CreateLessonPage from './pages/CreateLessonPage';
 
 import { LessonContextProvider } from './context/LessonsContext';
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: "/lesson/:id",
     element: <Lesson/>,
   },
+  {
+    path: "/create",
+    element: <CreateLessonPage/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
