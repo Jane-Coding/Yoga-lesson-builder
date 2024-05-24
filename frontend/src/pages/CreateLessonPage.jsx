@@ -6,7 +6,12 @@ import AsanaCard from '../components/AsanaCard';
 
 import asanasDb from '../db/asanasDb.json';
 
+import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
+
 function CreateLessonPage (){
+    
+const {list} = useCreateLessonContext()
+
     return (
         <>
         <Navbar/>
@@ -19,8 +24,8 @@ function CreateLessonPage (){
         </Stack>
 
         <Typography sx={{fontWeight: 'bold'}}>Chosen asanas for this lesson:</Typography>
-        <Stack direction='row'>
-            {/* Chosen asanas go here */}
+        <Stack direction='row' sx={{height: '300px'}}>
+            {list && list.map( el => <AsanaCard link={el} type={'DELETE'}/>)}
         </Stack>
 
         <Box>
@@ -28,7 +33,7 @@ function CreateLessonPage (){
             <Grid container rowGap={2} columnGap={2} mt={1} sx={{justifyContent: 'center'}}>
                 {asanasDb.asanas.map(el => 
                 <Grid>
-                    <AsanaCard link={el}/>
+                    <AsanaCard link={el} type={'ADD'}/>
                 </Grid>                
                 )}
 

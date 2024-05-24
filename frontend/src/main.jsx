@@ -10,6 +10,7 @@ import Lesson from './pages/Lesson';
 import CreateLessonPage from './pages/CreateLessonPage';
 
 import { LessonContextProvider } from './context/LessonsContext';
+import { CreateLessonContextProvider } from './context/CreateLessonContext';
 
 import {
   createBrowserRouter,
@@ -35,8 +36,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <LessonContextProvider>
-      <CssBaseline enableColorScheme />
-      <RouterProvider router={router} />
+      <CreateLessonContextProvider>
+        <CssBaseline enableColorScheme />
+        <RouterProvider router={router} />
+      </CreateLessonContextProvider>
     </LessonContextProvider>
   </React.StrictMode>,
 )

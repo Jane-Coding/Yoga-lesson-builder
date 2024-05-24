@@ -13,7 +13,11 @@ const cardStyle = {
     justifyContent: 'space-between',
 }
 
-function AsanaCard({link}) {
+import { useCreateLessonContext } from "../hooks/useCreateLessonContext";
+
+function AsanaCard({link, type}) {    
+    const {dispatch} = useCreateLessonContext()
+
     const image = `../src/assets/poses/${link.id}.png`
     return (
         <Card variant="outlined" sx={cardStyle}>
@@ -21,7 +25,7 @@ function AsanaCard({link}) {
                 <CardMedia component="img" sx={{maxWidth: '100%'}} image={image}></CardMedia>
                 <Typography p={2}>{link.asana}</Typography>
             </CardContent>
-            <Button variant="outlined" color="secondary">Add to lesson</Button>
+            <Button variant="outlined" color="secondary" onClick={()=> dispatch({type: `${type}_ASANA`, payload: link})}>{type} LESSON</Button>
         </Card>
     );
 }
