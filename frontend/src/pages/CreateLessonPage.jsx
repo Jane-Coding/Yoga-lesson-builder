@@ -8,6 +8,8 @@ import asanasDb from '../db/asanasDb.json';
 
 import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
 
+import SimpleSlider from "../components/SimpleSlider";
+
 function CreateLessonPage (){
     
 const {list} = useCreateLessonContext()
@@ -20,13 +22,15 @@ const {list} = useCreateLessonContext()
         <Stack spacing={3}>
             <TextField label='Title of the lesson' variant='outlined' color='secondary' required></TextField>
             <TextField label='Description of the lesson' variant='outlined' color='secondary' multiline></TextField>
-
         </Stack>
 
-        <Typography sx={{fontWeight: 'bold'}}>Chosen asanas for this lesson:</Typography>
-        <Stack direction='row' sx={{height: '300px'}}>
-            {list && list.map( el => <AsanaCard link={el} type={'DELETE'}/>)}
-        </Stack>
+        <Typography sx={{fontWeight: 'bold'}}>Chosen asanas for this lesson: {list.length}</Typography>
+
+        {list.length === 0 ? 
+            <Typography sx={{height: '300px'}}>No chosen asanas</Typography> 
+            : 
+            <SimpleSlider list={list}/>
+        }        
 
         <Box>
             <Typography sx={{fontWeight: 'bold'}}>Please choose from the list of available poses:</Typography>

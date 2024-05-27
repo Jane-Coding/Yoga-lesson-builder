@@ -1,0 +1,27 @@
+
+.slick-list {
+    margin-left: 24px;
+    margin-right: 24px;    
+}
+
+.slick-slide div {
+    height: 300px;
+}
+
+.slick-prev {
+    left: -6px;
+}
+
+.slick-next {
+    right: 0px;
+}
+
+.slick-prev::after, .slick-prev::before {
+    color: #ab47bc !important;    
+    font-size: 30px;
+}
+
+.slick-next::after, .slick-next::before {
+    color: #ab47bc !important;
+    font-size: 30px;
+}
