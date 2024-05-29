@@ -17,12 +17,12 @@ import { useCreateLessonContext } from "../hooks/useCreateLessonContext";
 
 function AsanaCard({link, type}) {
 
-    const image = `../src/assets/poses/${link.id}.png`
+    const image = `../src/assets/poses/${link.picture}.png`
     return (
         <Card variant="outlined" sx={cardStyle}>
             <CardContent sx={{ padding: '0'}}>
                 <CardMedia component="img" sx={{maxWidth: '100%'}} image={image}></CardMedia>
-                <Typography p={2}>{link.asana}</Typography>
+                <Typography p={2}>{link.pose}</Typography>
             </CardContent>
             {type === 'ADD' ? <AddButton link={link}/> : <DeleteButton link={link} uuid={link.uuid}/>}
         </Card>

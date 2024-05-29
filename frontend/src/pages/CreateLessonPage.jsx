@@ -21,7 +21,7 @@ function CreateLessonPage (){
             <Container>
                 <Typography sx={{fontWeight: 'bold'}}>Please choose from the list of available poses:</Typography>
                 <Grid container rowGap={2} columnGap={2} mt={1} sx={{justifyContent: 'center', mt: '30px'}}>
-                    {asanasDb.asanas.map(el => 
+                    {asanasDb.poses.map(el => 
                         <Grid key={uuidv4()}>
                             <AsanaCard link={el} type={'ADD'} />                    
                         </Grid>
