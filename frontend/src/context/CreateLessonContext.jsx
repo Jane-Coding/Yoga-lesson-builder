@@ -2,13 +2,20 @@ import { createContext, useReducer } from "react";
 
 export const CreateLessonContext = createContext()
 
+import { v4 as uuidv4 } from 'uuid';
+
 function listReducer(list, action){
     switch (action.type){
         case 'ADD_ASANA': {
-            return [...list, action.payload] 
+            const newItem = {
+                asana: action.payload.asana,
+                id: action.payload.id,
+                uuid: uuidv4()
+            }
+            return [...list, newItem]
         }
         case 'DELETE_ASANA': {
-            return list.filter(el => el.id !== action.payload.id)
+            return list.filter(el => el.uuid !== action.uuid)
         }
 
         default:

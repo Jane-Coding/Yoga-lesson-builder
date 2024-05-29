@@ -5,6 +5,8 @@ import "./sliderStyle.scss";
 
 import AsanaCard from "./AsanaCard";
 
+import { v4 as uuidv4 } from 'uuid';
+
 function SampleNextArrow(props) {
   const { className, onClick } = props;
   return (
@@ -64,7 +66,7 @@ export default function SimpleSlider({list}) {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {list && list.map( el => <AsanaCard link={el} type={'DELETE'}/>)}
+        {list && list.map( el => <AsanaCard link={el} type={'DELETE'} key={uuidv4()}/>)}
       </Slider>
     </div>
   );

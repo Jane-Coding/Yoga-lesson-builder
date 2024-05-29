@@ -15,8 +15,7 @@ const cardStyle = {
 
 import { useCreateLessonContext } from "../hooks/useCreateLessonContext";
 
-function AsanaCard({link, type}) {    
-    const {dispatch} = useCreateLessonContext()
+function AsanaCard({link, type}) {
 
     const image = `../src/assets/poses/${link.id}.png`
     return (
@@ -25,9 +24,24 @@ function AsanaCard({link, type}) {
                 <CardMedia component="img" sx={{maxWidth: '100%'}} image={image}></CardMedia>
                 <Typography p={2}>{link.asana}</Typography>
             </CardContent>
-            <Button variant="outlined" color="secondary" onClick={()=> dispatch({type: `${type}_ASANA`, payload: link})}>{type} LESSON</Button>
+            {type === 'ADD' ? <AddButton link={link}/> : <DeleteButton link={link} uuid={link.uuid}/>}
         </Card>
     );
 }
 
 export default AsanaCard;
+
+
+function AddButton ({link}) {
+    const {dispatch} = useCreateLessonContext()
+    return (
+        <Button variant="outlined" color="secondary" onClick={()=> dispatch({type: `ADD_ASANA`, payload: link})}>ADD LESSON</Button>
+    )
+}
+
+function DeleteButton ({link, uuid}) {
+    const {dispatch} = useCreateLessonContext()
+    return (
+        <Button variant="outlined" color="secondary" onClick={()=> dispatch({type: `DELETE_ASANA`, payload: link, uuid: uuid})}>DELETE LESSON</Button>
+    )
+}
