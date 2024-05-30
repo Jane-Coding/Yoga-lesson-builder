@@ -18,11 +18,8 @@ function listReducer(list, action){
             return list.filter(el => el.uuid !== action.uuid)
         }
         case 'RESET': {
-            console.log('here is the log for reset context');
-            let newItem = action.payload
-            return newItem
-        }
-
+            return action.payload
+        }        
         default:
             return list
     }

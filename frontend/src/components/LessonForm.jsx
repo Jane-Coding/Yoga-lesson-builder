@@ -6,7 +6,7 @@ import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useState } from 'react';
 
 function LessonForm() {
-    let { list } = useCreateLessonContext()
+    let { list, dispatch: dispatchList } = useCreateLessonContext()
     const { dispatch } = useLessonsContext()
 
     const [ title, setTitle ] = useState('')
@@ -37,9 +37,8 @@ function LessonForm() {
             setTitle('')
             setDescription('')
             dispatch({type: 'CREATE_LESSON', payload: json})
+            dispatchList({type: 'RESET', payload: []})
         }
-
-
     }
 
     return ( 
