@@ -57,7 +57,7 @@ function LessonForm() {
                         required 
                         onChange={(e)=> setTitle(e.target.value)} 
                         value={title}
-                        error={emptyFields.includes('title') ? error : null}
+                        error={emptyFields.includes('title')}
                     ></TextField>
 
                     <TextField 
@@ -68,7 +68,7 @@ function LessonForm() {
                         multiline 
                         onChange={(e)=> setDescription(e.target.value)} 
                         value={description}
-                        error={emptyFields.includes('description') ? 'error' : null}
+                        error={emptyFields.includes('description')}
                     ></TextField>
 
                 </Stack>

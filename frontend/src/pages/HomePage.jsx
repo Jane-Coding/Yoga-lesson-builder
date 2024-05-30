@@ -25,7 +25,7 @@ function HomePage() {
 
         getLessonsList()
 
-    }, [])
+    }, [dispatch])
 
     return ( 
         <>
