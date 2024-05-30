@@ -26,6 +26,22 @@ const getOneLesson = async (req, res) => {
 const createLesson = async (req, res) => {
     const {title, description, poses} = req.body
     
+    let emptyFields = []
+
+    if(!title){
+        emptyFields.push('title')
+    }
+    if(!description){
+        emptyFields.push('description')
+    }
+    if(poses.length === 0){
+        emptyFields.push('poses')
+    }
+
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
+    }
+    
     try{
         const lesson = await Lesson.create({title, description, poses})
         res.status(200).json(lesson)

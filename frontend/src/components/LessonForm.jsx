@@ -11,7 +11,8 @@ function LessonForm() {
 
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
-    const [ error, setError ] = useState(null)
+    const [ error, setError ] = useState([])
+    const [ emptyFields, setEmptyFields ] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -30,10 +31,12 @@ function LessonForm() {
 
         if(!response.ok){
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
-
+        
         if(response.ok){
-            setError(null)
+            setEmptyFields([])
+            setError([])
             setTitle('')
             setDescription('')
             dispatch({type: 'CREATE_LESSON', payload: json})
@@ -48,24 +51,34 @@ function LessonForm() {
                 <Stack spacing={3}>
 
                     <TextField 
-                    label='Title of the lesson' 
-                    variant='outlined' 
-                    color='secondary' 
-                    required 
-                    onChange={(e)=> setTitle(e.target.value)} 
-                    value={title}></TextField>
+                        label='Title of the lesson' 
+                        variant='outlined' 
+                        color='secondary' 
+                        required 
+                        onChange={(e)=> setTitle(e.target.value)} 
+                        value={title}
+                        error={emptyFields.includes('title') ? error : null}
+                    ></TextField>
 
                     <TextField 
-                    label='Description of the lesson' 
-                    variant='outlined' 
-                    color='secondary' 
-                    multiline 
-                    onChange={(e)=> setDescription(e.target.value)} 
-                    value={description}></TextField>
+                        label='Description of the lesson' 
+                        variant='outlined' 
+                        color='secondary'
+                        required
+                        multiline 
+                        onChange={(e)=> setDescription(e.target.value)} 
+                        value={description}
+                        error={emptyFields.includes('description') ? 'error' : null}
+                    ></TextField>
 
                 </Stack>
 
-                <Typography sx={{fontWeight: 'bold'}}>Chosen asanas for this lesson: {list.length}</Typography>
+                <Typography 
+                    sx={{
+                    fontWeight: 'bold',
+                    color: emptyFields.includes('poses') ? 'red' : 'black'                    
+                    }}
+                >Chosen asanas for this lesson: {list.length}</Typography>
 
                 {list.length === 0 
                     ? 
@@ -74,7 +87,6 @@ function LessonForm() {
                     <SimpleSlider list={list}/>
                 }
                 <Button onClick={handleSubmit}>Submit the lesson</Button>
-                {error && <div>{error}</div>}
             </FormControl>
         </Container>
      );

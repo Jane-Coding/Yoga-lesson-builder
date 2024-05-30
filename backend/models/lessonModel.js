@@ -21,7 +21,10 @@ const lessonSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    poses: [posesSchema],
+    poses: {
+      type: [posesSchema],
+      validate: v => Array.isArray(v) && v.length > 0 
+    }
   },
   { timestamps: true }
 );
