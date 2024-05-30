@@ -84,7 +84,8 @@ function Lesson() {
               component="img"
               alt="asana"
               height="sm"
-              // image={asana}
+              image={lesson && `../src/assets/poses/${lesson.poses[currentPose].picture}.png`}
+              sx={{margin: 'auto'}}
           />
 
           <CardContent>
