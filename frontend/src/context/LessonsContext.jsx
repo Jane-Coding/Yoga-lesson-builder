@@ -10,7 +10,7 @@ export const lessonsReducer = (state, action) => {
             }
         case 'CREATE_LESSON':
             return { 
-                lessons: [action.payload, ...state.lessons]
+                lessons: [action.payload, state.lessons]
             }
         case 'DELETE_LESSON':
             return {
