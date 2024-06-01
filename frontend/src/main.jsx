@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import './fonts.scss';
 
+import AppLayout from './components/AppLayout';
 import HomePage from './pages/HomePage';
 import ErrorPage from './pages/ErrorPage';
 import Lesson from './pages/Lesson';
@@ -16,19 +17,25 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage/>,
-    errorElement: <ErrorPage/>
-  },
-  {
-    path: "/lesson/:id",
-    element: <Lesson/>,
-  },
-  {
-    path: "/create",
-    element: <CreateLessonPage/>
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage/>,
+        errorElement: <ErrorPage/>
+      },
+      {
+        path: "/lesson/:id",
+        element: <Lesson/>,
+      },
+      {
+        path: "/create",
+        element: <CreateLessonPage/>
+      }
+    ]
   }
 ]);
 

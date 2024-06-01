@@ -1,6 +1,5 @@
 import { Container, Typography, Grid } from '@mui/material';
 
-import Navbar from '../components/Navbar';
 import LessonForm from '../components/LessonForm';
 import AsanaCard from '../components/AsanaCard';
 
@@ -13,8 +12,6 @@ import { v4 as uuidv4 } from 'uuid';
 function CreateLessonPage (){
 
     return (
-        <>
-        <Navbar/>
         <CreateLessonContextProvider>
             <LessonForm/>
             
@@ -28,8 +25,7 @@ function CreateLessonPage (){
                     )}
                 </Grid>
             </Container>
-        </CreateLessonContextProvider>   
-        </>
+        </CreateLessonContextProvider>
     )
 }
 

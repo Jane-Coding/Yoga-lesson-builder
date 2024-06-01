@@ -2,13 +2,11 @@ import { Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
-import Navbar from '../components/Navbar';
 import LessonCard from '../components/LessonCard';
 
 import { useEffect } from 'react';
 
 import { useLessonsContext } from '../hooks/useLessonsContext';
-
 
 function HomePage() {
     const {lessons, dispatch} = useLessonsContext()
@@ -27,9 +25,7 @@ function HomePage() {
 
     }, [dispatch])
 
-    return ( 
-        <>
-        <Navbar/>
+    return (
         <Container maxWidth="sm" sx={{mt: "80px", mb: "60px"}}>
             <Stack spacing={3}>            
                 <Typography variant="h4">
@@ -48,9 +44,8 @@ function HomePage() {
                     return <SessionCard session={el}/>
                 })} */}
             </Stack>
-        </Container>
-        </>           
-     );
+        </Container>      
+    );
 }
 
 export default HomePage;

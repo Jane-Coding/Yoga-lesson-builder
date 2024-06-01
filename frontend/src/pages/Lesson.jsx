@@ -13,7 +13,6 @@ import IconButton from '@mui/material/IconButton';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
-import Navbar from '../components/Navbar';
 import EndLessonDialog from '../components/EndLessonDialog';
 
 import { useParams } from 'react-router-dom';
@@ -77,7 +76,6 @@ function Lesson() {
 
   return (
       <>
-      <Navbar/>
       <Container maxWidth='sm'>
         <Card sx={{ maxWidth: "sm" , mt: "150px", }} >
           <CardMedia
