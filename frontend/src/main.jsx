@@ -34,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/create",
         element: <CreateLessonPage/>
+      },
+      {
+        path: "/update/:id",
+        element: <CreateLessonPage/>
       }
     ]
   }

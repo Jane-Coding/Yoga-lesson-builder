@@ -68,6 +68,23 @@ const deleteLesson = async (req, res) => {
 
 const updateLesson = async (req, res) => {
     const {id} = req.params
+    const {title, description, poses} = req.body
+
+    let emptyFields = []
+
+    if(!title){
+        emptyFields.push('title')
+    }
+    if(!description){
+        emptyFields.push('description')
+    }
+    if(poses.length === 0){
+        emptyFields.push('poses')
+    }
+
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
+    }
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "No such lesson"})

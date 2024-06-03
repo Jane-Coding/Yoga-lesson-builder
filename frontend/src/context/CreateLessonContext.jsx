@@ -19,7 +19,10 @@ function listReducer(list, action){
         }
         case 'RESET': {
             return action.payload
-        }        
+        }
+        case 'SET_ASANAS': {
+            return action.payload.map((poses) => ({ pose: poses.pose, picture: poses.picture, uuid: poses._id }))
+        }
         default:
             return list
     }

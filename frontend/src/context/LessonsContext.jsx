@@ -16,6 +16,10 @@ export const lessonsReducer = (state, action) => {
             return {
                 lessons: state.lessons.filter( el => el._id !== action.payload._id)
             }
+        case 'UPDATE_LESSON':
+            return {
+                lessons: state.lessons.map(el => el._id === action.payload._id ? action.payload : el)
+            }
         default:
             return state
     }

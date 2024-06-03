@@ -53,7 +53,7 @@ function LessonCard({lesson}) {
 
                 <Grid item xs={6}>
                     <ButtonGroup sx={{border: "2px solid", borderColor: "primary.main"}} aria-label="Basic button group" >                        
-                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="edit">
+                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="edit" component={Link} to={`update/${lesson._id}`}>
                             <EditIcon/>
                         </IconButton>
                         <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="delete" onClick={deleteLesson}>
