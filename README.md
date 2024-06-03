@@ -11,6 +11,7 @@ App is still in production. For more details please check lists below :point_dow
    - fetch data from MondoDb and showcases saved lesson in a card
    - preview what poses will be in single lesson
    - delete lesson from the database
+   - update lesson data
 
 2. Create lesson page:
    - selection from available poses into lesson
@@ -34,8 +35,7 @@ App is still in production. For more details please check lists below :point_dow
 
 ### Plans for future updates
 
-1. Ability to change lesson data
-2. Authentification of users (log in \ out)
-3. Add notifications
-4. Redesign
-5. Add sound notification to start next pose
+1. Authentification of users (log in \ out)
+2. Add notifications
+3. Redesign
+4. Add sound notification to start next pose
