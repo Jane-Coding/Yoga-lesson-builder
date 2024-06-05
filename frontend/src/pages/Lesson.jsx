@@ -25,6 +25,7 @@ function Lesson() {
 
   const [lesson, setLesson] = React.useState(null)
   let [currentPose, setCurrentPose] = React.useState(0)
+  let [nextPose, setNextPose] = React.useState(currentPose + 1)
   const [posesArray, setPosesArray] = React.useState([])
   const [showDialog, setShowDialog] = React.useState(false)
 
@@ -61,6 +62,7 @@ function Lesson() {
           else {
             currentPose ++
             setCurrentPose(currentPose)
+            setNextPose(++currentPose)
           }
         }        
       }
@@ -92,7 +94,8 @@ function Lesson() {
               {lesson && posesArray[currentPose].pose}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {lesson && lesson.title}
+              {'Next pose: '} 
+              {lesson && currentPose < posesArray.length-1 ? posesArray[nextPose].pose : 'End of the lesson'}
             </Typography>
           </CardContent>
 
