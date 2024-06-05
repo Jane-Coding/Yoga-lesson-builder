@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import LessonCard from '../components/LessonCard';
+import Notification from '../components/Notification';
 
 import { useEffect } from 'react';
 
@@ -40,7 +41,8 @@ function HomePage() {
                     Default sessions
                 </Typography>
 
-            </Stack>           
+            </Stack>
+            <Notification />
         </Container>      
     );
 }

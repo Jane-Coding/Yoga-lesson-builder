@@ -3,6 +3,7 @@ import { Container, Typography, Grid } from '@mui/material';
 import LessonForm from '../components/LessonForm';
 import AsanaCard from '../components/AsanaCard';
 import LessonFormUpdate from '../components/LessonFormUpdate';
+import Notification from '../components/Notification';
 
 import asanasDb from '../db/asanasDb.json';
 
@@ -27,6 +28,7 @@ function CreateLessonPage (){
                         </Grid>
                     )}
                 </Grid>
+                <Notification />
             </Container>
         </CreateLessonContextProvider>
     )

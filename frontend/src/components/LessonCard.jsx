@@ -13,7 +13,6 @@ import {
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Notification from '../components/Notification';
 
 import { Link } from "react-router-dom";
 
@@ -93,8 +92,6 @@ function LessonCard({lesson}) {
                     {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography key={uuidv4()}>{ind+1}) {pose}</Typography>)}
                 </DialogContent>            
             </Dialog>
-            
-            <Notification />
 
             <Dialog
                 open={alert}
