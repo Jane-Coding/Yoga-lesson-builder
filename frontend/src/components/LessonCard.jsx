@@ -7,7 +7,9 @@ import {
     IconButton, 
     Dialog, 
     DialogTitle, 
-    DialogContent } from '@mui/material';
+    DialogContent,
+    DialogContentText,
+    DialogActions } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -24,9 +26,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 function LessonCard({lesson}) {
     const { dispatch } = useLessonsContext()
-    const { notification, openNotification } = useNotificationContext()
+    const { openNotification } = useNotificationContext()
         
-    const [ open, setOpen ] = useState(false)
+    const [ preview, setPreview ] = useState(false)
+    const [alert, setAlert] = useState(false)
 
     const deleteLesson = async () => {
         const response = await fetch('http://localhost:8085/api/lessons/' + lesson._id, {
@@ -42,7 +45,11 @@ function LessonCard({lesson}) {
     }
 
     function previewLesson () {
-        setOpen(!open)
+        setPreview(!preview)
+    }
+
+    const openAlert = () => {
+        setAlert(!alert);
     }
 
     return ( 
@@ -61,7 +68,7 @@ function LessonCard({lesson}) {
                         <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="edit" component={Link} to={`update/${lesson._id}`}>
                             <EditIcon/>
                         </IconButton>
-                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="delete" onClick={deleteLesson}>
+                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="delete" onClick={openAlert}>
                             <DeleteIcon />
                         </IconButton>
                         <Button variant="text" onClick={()=> previewLesson()}>Preview</Button>
@@ -79,16 +86,37 @@ function LessonCard({lesson}) {
             </Grid>
             </Paper>
 
-            <Dialog open={open}>
+            <Dialog open={preview}>
                 <Button onClick={()=> previewLesson()} color='secondary' variant='outlined'>Close Preview</Button>
                 <DialogTitle>List of asanas for the lesson: {lesson.title}</DialogTitle>
                 <DialogContent>
                     {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography key={uuidv4()}>{ind+1}) {pose}</Typography>)}
-                </DialogContent>
-            
+                </DialogContent>            
             </Dialog>
+            
+            <Notification />
 
-            {notification && <Notification />}
+            <Dialog
+                open={alert}
+                onClose={openAlert}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                >                    
+                <DialogTitle id="alert-dialog-title">
+                    {"Deletion of the lesson"}
+                </DialogTitle>
+
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to delete lesson: {lesson.title} ?
+                </DialogContentText>
+                </DialogContent>
+
+                <DialogActions>
+                    <Button onClick={openAlert}>Disagree</Button>
+                    <Button onClick={deleteLesson}>Agree</Button>
+                </DialogActions>
+            </Dialog>            
         </>
     );
 }
