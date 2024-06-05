@@ -1,13 +1,17 @@
 import {Container, Stack, TextField, Typography, Button, FormControl} from '@mui/material';
 import SimpleSlider from "../components/SimpleSlider";
+import Notification from '../components/Notification';
 
 import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
 import { useLessonsContext } from '../hooks/useLessonsContext';
+import { useNotificationContext } from '../hooks/useNotificationContext';
+
 import { useState } from 'react';
 
 function LessonForm() {
-    let { list, dispatch: dispatchList } = useCreateLessonContext()
+    const { list, dispatch: dispatchList } = useCreateLessonContext()
     const { dispatch } = useLessonsContext()
+    const { notification, openNotification } = useNotificationContext()
 
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
@@ -41,6 +45,7 @@ function LessonForm() {
             setDescription('')
             dispatch({type: 'CREATE_LESSON', payload: json})
             dispatchList({type: 'RESET', payload: []})
+            openNotification({type: 'CREATE'})
         }
     }
 
@@ -88,6 +93,8 @@ function LessonForm() {
                 }
                 <Button onClick={handleSubmit}>Submit the lesson</Button>
             </FormControl>
+            
+            {notification && <Notification />}
         </Container>
      );
 }

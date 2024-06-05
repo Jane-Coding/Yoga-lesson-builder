@@ -40,10 +40,7 @@ function HomePage() {
                     Default sessions
                 </Typography>
 
-                {/* {lessonDefault.map(el => {
-                    return <SessionCard session={el}/>
-                })} */}
-            </Stack>
+            </Stack>           
         </Container>      
     );
 }

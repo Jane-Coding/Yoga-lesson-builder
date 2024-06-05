@@ -2,14 +2,18 @@ import React from 'react';
 
 import {Container, Stack, TextField, Typography, Button, FormControl} from '@mui/material';
 import SimpleSlider from "../components/SimpleSlider";
+import Notification from '../components/Notification';
 
 import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
 import { useLessonsContext } from '../hooks/useLessonsContext';
+import { useNotificationContext } from '../hooks/useNotificationContext';
+
 import { useState } from 'react';
 
 function LessonFormUpdate({id}) {
-    let { list, dispatch: dispatchList } = useCreateLessonContext()
+    const { list, dispatch: dispatchList } = useCreateLessonContext()
     const { dispatch } = useLessonsContext()
+    const { notification, openNotification } = useNotificationContext()
 
     const [ lesson, setLesson ] = useState()
 
@@ -61,6 +65,7 @@ function LessonFormUpdate({id}) {
         if(response.ok){
             setEmptyFields([])
             dispatch({type: 'UPDATE_LESSON', payload: json})
+            openNotification({type: 'UPDATE'})
         }
     }
 
@@ -108,6 +113,8 @@ function LessonFormUpdate({id}) {
                 }
                 <Button onClick={handleUpdate}>Submit the lesson</Button>
             </FormControl>
+
+            {notification && <Notification />}
         </Container>
      );
 }
