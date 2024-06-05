@@ -31,11 +31,11 @@ App is still in production. For more details please check lists below :point_dow
 5. Backend uses express, mongoose
 6. Routing is made with react-router-dom
 7. Design is used with MUI and react-slick to storage all selected lessons in Create lesson page
+8. Popup notification on create, delete and update lessons
 
 
 ### Plans for future updates
 
 1. Authentification of users (log in \ out)
-2. Add notifications
-3. Redesign
-4. Add sound notification to start next pose
+2. Redesign
+3. Add sound notification to start next pose
