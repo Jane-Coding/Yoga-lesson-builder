@@ -11,6 +11,7 @@ App is still in production. For more details please check lists below :point_dow
    - fetch data from MondoDb and showcases saved lesson in a card
    - preview what poses will be in single lesson
    - delete lesson from the database
+   - alert window to confirm\reject deletion
    - update lesson data
 
 2. Create lesson page:
