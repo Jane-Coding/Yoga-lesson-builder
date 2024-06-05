@@ -11,16 +11,20 @@ import {
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Notification from '../components/Notification';
 
 import { Link } from "react-router-dom";
 
 import { useLessonsContext } from '../hooks/useLessonsContext';
+import { useNotificationContext } from '../hooks/useNotificationContext';
+
 import { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
 function LessonCard({lesson}) {
     const { dispatch } = useLessonsContext()
+    const { notification, openNotification } = useNotificationContext()
         
     const [ open, setOpen ] = useState(false)
 
@@ -33,6 +37,7 @@ function LessonCard({lesson}) {
 
         if(response.ok){
             dispatch({type: 'DELETE_LESSON', payload: deletedLesson})
+            openNotification({type: 'DELETE'})
         }
     }
 
@@ -82,6 +87,8 @@ function LessonCard({lesson}) {
                 </DialogContent>
             
             </Dialog>
+
+            {notification && <Notification />}
         </>
     );
 }
