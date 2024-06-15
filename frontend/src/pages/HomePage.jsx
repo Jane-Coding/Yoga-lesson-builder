@@ -8,9 +8,12 @@ import Notification from '../components/Notification';
 import { useEffect } from 'react';
 
 import { useLessonsContext } from '../hooks/useLessonsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function HomePage() {
     const {lessons, dispatch} = useLessonsContext()
+
+    const { user } = useAuthContext()
 
     useEffect(() => {
         const getLessonsList = async () => {
@@ -28,7 +31,9 @@ function HomePage() {
 
     return (
         <Container maxWidth="sm" sx={{mt: "80px", mb: "60px"}}>
-            <Stack spacing={3}>            
+            <Stack spacing={3}>
+                {user && <Typography>Welcome back {user.email}</Typography>}
+                
                 <Typography variant="h4">
                     Created sessions
                 </Typography>
