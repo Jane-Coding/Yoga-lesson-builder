@@ -6,6 +6,7 @@ import SimpleSlider from "../components/SimpleSlider";
 import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
 import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useNotificationContext } from '../hooks/useNotificationContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 import { useState } from 'react';
 
@@ -13,6 +14,7 @@ function LessonFormUpdate({id}) {
     const { list, dispatch: dispatchList } = useCreateLessonContext()
     const { dispatch } = useLessonsContext()
     const { openNotification } = useNotificationContext()
+    const { user } = useAuthContext()
 
     const [ lesson, setLesson ] = useState()
 
@@ -23,7 +25,11 @@ function LessonFormUpdate({id}) {
 
     React.useEffect(()=> {
         const getLesson = async() => {
-        const response = await fetch(`http://localhost:8085/api/lessons/${id}`)
+        const response = await fetch(`http://localhost:8085/api/lessons/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        })
         const lesson = await response.json()
 
             if(!response.ok){
@@ -44,13 +50,19 @@ function LessonFormUpdate({id}) {
       }, [dispatch, dispatchList, id])
 
     const handleUpdate = async () => {
-        const updatedLesson = {...lesson, title, description, poses: list }        
+        const updatedLesson = {...lesson, title, description, poses: list }
+        
+        if(!user){
+            setError('You must be logged in')
+            return 
+        }
 
         const response = await fetch(`http://localhost:8085/api/lessons/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(updatedLesson),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 

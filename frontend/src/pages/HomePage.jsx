@@ -17,7 +17,11 @@ function HomePage() {
 
     useEffect(() => {
         const getLessonsList = async () => {
-            const response = await fetch('http://localhost:8085/api/lessons')
+            const response = await fetch('http://localhost:8085/api/lessons', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             const lessonsList = await response.json()
 
             if(response.ok){
@@ -25,9 +29,11 @@ function HomePage() {
             }
         }
 
-        getLessonsList()
+        if(user){
+            getLessonsList()
+        }
 
-    }, [dispatch])
+    }, [dispatch, user])
 
     return (
         <Container maxWidth="sm" sx={{mt: "80px", mb: "60px"}}>
