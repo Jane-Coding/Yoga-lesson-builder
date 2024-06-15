@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import lessonRoutes from "./routes/lessons.js";
+import userRoutes from "./routes/user.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/lessons", lessonRoutes);
+app.use("/api/user", userRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
