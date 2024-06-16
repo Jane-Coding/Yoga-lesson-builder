@@ -48,7 +48,7 @@ function Lesson() {
 
     getLessonsList()
 
-  }, [id])
+  }, [id, user])
 
   React.useEffect( () => {
     const interval = setInterval(() => {
