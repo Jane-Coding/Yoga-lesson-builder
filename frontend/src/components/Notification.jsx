@@ -5,7 +5,7 @@ import { useNotificationContext } from '../hooks/useNotificationContext';
 function Notification() {
     
     const { notification, openNotification } = useNotificationContext()
-    const { open, message } = notification
+    const { open, message, severity } = notification
 
     const handleClose = () => {
         openNotification({type: 'CLOSE'})
@@ -18,7 +18,7 @@ function Notification() {
             onClose={handleClose}
         >
             <Alert
-                severity="success"
+                severity={severity}
                 variant="filled"
                 sx={{ width: '100%' }}
             >

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext"
+import { useNotificationContext } from '../hooks/useNotificationContext';
 
 export const useLogin = () => {
     const [ error, setError ] = useState(null)
     const [ isLoading, setIsLoading ] = useState(null)
+
     const { dispatch } = useAuthContext()
+    const { openNotification } = useNotificationContext()
 
     const login = async (email, password) => {
         setIsLoading(true)
@@ -21,6 +24,8 @@ export const useLogin = () => {
         if(!response.ok){
             setIsLoading(false)
             setError(json.error)
+
+            openNotification({type: 'ERROR', message: json.error})
         }
         if(response.ok){
             // save user to local storage
@@ -33,5 +38,5 @@ export const useLogin = () => {
         }
     }
 
-    return { login, isLoading, error }
+    return { login, isLoading }
 }

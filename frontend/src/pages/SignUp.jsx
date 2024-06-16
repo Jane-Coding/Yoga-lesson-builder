@@ -1,13 +1,14 @@
-import {Container, Stack, TextField, Typography, Button, FormControl} from '@mui/material';
+import { TextField, Typography, Button, FormControl } from '@mui/material';
 
 import { useSignup } from '../hooks/useSignup';
 
 import { useState } from "react";
 
-function SignUp() {
+function Signup() {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
-    const { signup, error, isLoading } = useSignup()
+    
+    const { signup, isLoading } = useSignup()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -17,7 +18,7 @@ function SignUp() {
 
     return ( 
         <FormControl sx={{width: '100%', mt: '70px'}}>
-            <Typography variant='h4' mb={2}>Sign Up</Typography>
+            <Typography variant='h5' mb={2}>Create new account</Typography>
             <TextField 
                 label='Email' 
                 variant='outlined' 
@@ -37,10 +38,9 @@ function SignUp() {
                 value={password}
             ></TextField>
 
-            <Button onClick={handleSubmit} disabled={isLoading}>Signup</Button>
-            {error && <div>{error}</div>}
+            <Button onClick={handleSubmit} disabled={isLoading} color='secondary'>Create account</Button>
         </FormControl>
     );
 }
 
-export default SignUp;
+export default Signup;

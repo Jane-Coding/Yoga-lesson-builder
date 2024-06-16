@@ -1,4 +1,4 @@
-import {Container, Stack, TextField, Typography, Button, FormControl} from '@mui/material';
+import {TextField, Typography, Button, FormControl} from '@mui/material';
 
 import { useLogin } from '../hooks/useLogin';
 
@@ -8,7 +8,7 @@ function Login() {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
 
-    const { login, error, isLoading } = useLogin()
+    const { login, isLoading } = useLogin()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -18,7 +18,7 @@ function Login() {
 
     return ( 
         <FormControl sx={{width: '100%', mt: '70px'}}>
-            <Typography variant='h4' mb={2}>Log In</Typography>
+            <Typography variant='h5' mb={2}>Log In to see your lessons</Typography>
             <TextField 
                 label='Login' 
                 variant='outlined' 
@@ -38,8 +38,7 @@ function Login() {
                 value={password}
             ></TextField>
 
-            <Button onClick={handleSubmit} disabled={isLoading}>Login</Button>
-            {error && <div>{error}</div>}
+            <Button onClick={handleSubmit} disabled={isLoading} color='secondary'>Log In</Button>
         </FormControl>
     );
 }
