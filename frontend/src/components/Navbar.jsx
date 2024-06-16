@@ -9,7 +9,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 import { Link } from "react-router-dom";
-import { Button } from '@mui/material';
 
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout'
@@ -65,9 +64,6 @@ function Navbar() {
                   Log out
                 </MenuItem>
               }
-
-              {!user && <MenuItem onClick={handleClose} component={Link} to="/login">Log in</MenuItem>}
-              {!user && <MenuItem onClick={handleClose} component={Link} to="/signup">Sign up</MenuItem>}              
               
             </Menu>
 

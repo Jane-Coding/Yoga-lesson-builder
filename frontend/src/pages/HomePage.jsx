@@ -1,19 +1,22 @@
-import { Typography } from '@mui/material';
+import { Typography, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import LessonCard from '../components/LessonCard';
 import Notification from '../components/Notification';
+import Login from './Login';
+import Signup from './Signup';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 function HomePage() {
     const {lessons, dispatch} = useLessonsContext()
-
     const { user } = useAuthContext()
+
+    const [ newUser, setNewUser ] = useState(true)
 
     useEffect(() => {
         const getLessonsList = async () => {
@@ -35,14 +38,38 @@ function HomePage() {
 
     }, [dispatch, user])
 
+    const login = (event, update) => {
+        console.log(event);
+        console.log(update);
+        setNewUser(update)
+    }
+
     return (
         <Container maxWidth="sm" sx={{mt: "80px", mb: "60px"}}>
             <Stack spacing={3}>
-                {user && <Typography>Welcome back {user.email}</Typography>}
-                
-                <Typography variant="h4">
-                    Created sessions
-                </Typography>
+
+                {!user && <ToggleButtonGroup
+                    value={newUser}
+                    exclusive
+                    onChange={login}
+                    >
+                        <ToggleButton value={true}>
+                            <Typography>Sign up</Typography>
+                        </ToggleButton>
+                        <ToggleButton value={false}>
+                            <Typography>Log in</Typography>
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                }
+
+                {(!user && newUser) && <Signup />}
+                {(!user && !newUser) && <Login />}
+
+                {user && <>
+                    <Typography>Welcome back {user.email}</Typography>
+                    <Typography variant="h4">Your created lessons</Typography>
+                    </>
+                }
 
                 {lessons && lessons.map(lesson => 
                     <LessonCard key={lesson._id} lesson={lesson}></LessonCard>
