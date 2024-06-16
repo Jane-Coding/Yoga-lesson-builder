@@ -24,6 +24,10 @@ const lessonSchema = new mongoose.Schema(
     poses: {
       type: [posesSchema],
       validate: v => Array.isArray(v) && v.length > 0 
+    },
+    user_id: {
+      type: String,
+      require: true
     }
   },
   { timestamps: true }
