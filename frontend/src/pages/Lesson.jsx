@@ -16,9 +16,11 @@ import PauseIcon from '@mui/icons-material/Pause';
 import EndLessonDialog from '../components/EndLessonDialog';
 
 import { useParams } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function Lesson() {
   const { id } = useParams()
+  const { user } = useAuthContext()
 
   const [progress, setProgress] = React.useState(0);
   const [pause, setPause] = React.useState(false)
@@ -31,7 +33,11 @@ function Lesson() {
 
   React.useEffect(()=> {
     const getLessonsList = async() => {
-      const response = await fetch(`http://localhost:8085/api/lessons/${id}`)
+      const response = await fetch(`http://localhost:8085/api/lessons/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${user.token}`
+        }
+      })
       const lessonsList = await response.json()
       
       if(response.ok){
