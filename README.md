@@ -33,7 +33,7 @@ App is still in production. For more details please check lists below :point_dow
 6. Routing is made with react-router-dom
 7. Design is used with MUI and react-slick to storage all selected lessons in Create lesson page
 8. Popup notification on create, delete and update lessons
-9. Popup warning on wrong data for sign in or log in
+9. Popup warning notification on errors
 10. Authentification of users (log in \ out)
 
 
