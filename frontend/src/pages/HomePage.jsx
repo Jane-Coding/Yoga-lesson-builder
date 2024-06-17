@@ -4,8 +4,8 @@ import Stack from '@mui/material/Stack';
 
 import LessonCard from '../components/LessonCard';
 import Notification from '../components/Notification';
-import Login from './Login';
-import Signup from './Signup';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 
 import { useEffect, useState } from 'react';
 
@@ -39,8 +39,6 @@ function HomePage() {
     }, [dispatch, user])
 
     const login = (event, update) => {
-        console.log(event);
-        console.log(update);
         setNewUser(update)
     }
 
@@ -48,17 +46,17 @@ function HomePage() {
         <Container maxWidth="sm" sx={{mt: "80px", mb: "60px"}}>
             <Stack spacing={3}>
 
-                {!user && <ToggleButtonGroup
-                    value={newUser}
-                    exclusive
-                    onChange={login}
+                {!user && 
+                    <ToggleButtonGroup
+                        sx={{display: 'flex', justifyContent: 'center'}}
+                        color='secondary'
+                        value={newUser}
+                        exclusive
+                        onChange={login}
+                        size='large'
                     >
-                        <ToggleButton value={true}>
-                            <Typography>Sign up</Typography>
-                        </ToggleButton>
-                        <ToggleButton value={false}>
-                            <Typography>Log in</Typography>
-                        </ToggleButton>
+                        <ToggleButton value={true}>Sign up</ToggleButton>
+                        <ToggleButton value={false}>Log in</ToggleButton>
                     </ToggleButtonGroup>
                 }
 
