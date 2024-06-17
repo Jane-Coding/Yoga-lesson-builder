@@ -12,6 +12,7 @@ import CreateLessonPage from './pages/CreateLessonPage';
 
 import { LessonContextProvider } from './context/LessonsContext';
 import { NotificationContextProvider } from './context/NotificationContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 import {
   createBrowserRouter,
@@ -46,11 +47,13 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <LessonContextProvider>
-      <NotificationContextProvider>
-          <CssBaseline enableColorScheme />
-          <RouterProvider router={router} />
-        </NotificationContextProvider>
-    </LessonContextProvider>
+    <AuthContextProvider>
+      <LessonContextProvider>
+        <NotificationContextProvider>
+            <CssBaseline enableColorScheme />
+            <RouterProvider router={router} />
+          </NotificationContextProvider>
+      </LessonContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>,
 )

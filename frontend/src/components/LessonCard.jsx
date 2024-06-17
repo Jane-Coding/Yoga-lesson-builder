@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 
 import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useNotificationContext } from '../hooks/useNotificationContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 import { useState } from 'react';
 
@@ -26,13 +27,21 @@ import { v4 as uuidv4 } from 'uuid';
 function LessonCard({lesson}) {
     const { dispatch } = useLessonsContext()
     const { openNotification } = useNotificationContext()
+    const { user } = useAuthContext()
         
     const [ preview, setPreview ] = useState(false)
     const [alert, setAlert] = useState(false)
 
     const deleteLesson = async () => {
+        if(!user){
+            return 
+        }
+
         const response = await fetch('http://localhost:8085/api/lessons/' + lesson._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         })
 
         const deletedLesson = await response.json()

@@ -2,7 +2,9 @@ import Lesson from '../models/lessonModel.js'
 import mongoose from 'mongoose'
 
 const getLessons = async (req, res) => {
-    const lessons = await Lesson.find({}).sort({createdAt: -1})
+    const user_id = req.user._id
+
+    const lessons = await Lesson.find({ user_id }).sort({createdAt: -1})
 
     res.status(200).json(lessons)
 }
@@ -43,7 +45,8 @@ const createLesson = async (req, res) => {
     }
     
     try{
-        const lesson = await Lesson.create({title, description, poses})
+        const user_id = req.user._id
+        const lesson = await Lesson.create({title, description, poses, user_id})
         res.status(200).json(lesson)
     }catch(error){
         res.status(400).json({error: error.message})

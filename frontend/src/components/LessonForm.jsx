@@ -4,6 +4,7 @@ import SimpleSlider from "../components/SimpleSlider";
 import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
 import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useNotificationContext } from '../hooks/useNotificationContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 import { useState } from 'react';
 
@@ -11,6 +12,7 @@ function LessonForm() {
     const { list, dispatch: dispatchList } = useCreateLessonContext()
     const { dispatch } = useLessonsContext()
     const { openNotification } = useNotificationContext()
+    const { user } = useAuthContext()
 
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
@@ -19,6 +21,11 @@ function LessonForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!user){
+            setError('You must be logged in')
+            return 
+        }
         
         const lesson = {title, description, poses: list}
 
@@ -26,7 +33,8 @@ function LessonForm() {
             method: 'POST',
             body: JSON.stringify(lesson),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 

@@ -10,6 +10,9 @@ import Typography from '@mui/material/Typography';
 
 import { Link } from "react-router-dom";
 
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout'
+
 function Navbar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -19,6 +22,9 @@ function Navbar() {
     const handleClose = () => {
     setAnchorEl(null);
     };
+
+    const { logout } = useLogout()
+    const { user } = useAuthContext()
 
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -52,6 +58,13 @@ function Navbar() {
               <MenuItem onClick={handleClose}>
                 About Me
               </MenuItem>
+
+              {user && 
+                <MenuItem onClick={() => logout()}>
+                  Log out
+                </MenuItem>
+              }
+              
             </Menu>
 
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

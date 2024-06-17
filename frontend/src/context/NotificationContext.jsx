@@ -22,7 +22,14 @@ export const notificationReducer = (notification, action) => {
         case 'CLOSE':
             return {
                 open: false,
-                message: ''
+                message: '',
+                severity: ''
+            }
+        case 'ERROR':
+            return {
+                open: true,
+                message: action.message,
+                severity: 'error'
             }
         default:
             return notification
@@ -31,7 +38,7 @@ export const notificationReducer = (notification, action) => {
 
 
 export const NotificationContextProvider = ({ children }) => {
-    const [notification, openNotification] = useReducer(notificationReducer, {open: false, message: ''})
+    const [notification, openNotification] = useReducer(notificationReducer, {open: false, message: '', severity: 'success'})
 
     return ( 
         <NotificationContext.Provider value={{notification, openNotification}}>
