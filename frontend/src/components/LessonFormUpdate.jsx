@@ -71,6 +71,7 @@ function LessonFormUpdate({id}) {
         if(!response.ok){
             setError(json.error)
             setEmptyFields(json.emptyFields)
+            openNotification({type: 'ERROR', message: json.error})
         }
         
         if(response.ok){
