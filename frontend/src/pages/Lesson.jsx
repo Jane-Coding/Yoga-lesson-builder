@@ -1,15 +1,16 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import { Card, 
+  CardActions, 
+  CardContent, 
+  CardMedia, 
+  Typography, 
+  Container, 
+  Box, 
+  LinearProgress, 
+  IconButton 
+} from '@mui/material';
 
-import Container from '@mui/system/Container';
-import Box from '@mui/material/Box';
-import * as React from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
+import { useState, useEffect } from 'react';
 
-import IconButton from '@mui/material/IconButton';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
@@ -22,16 +23,16 @@ function Lesson() {
   const { id } = useParams()
   const { user } = useAuthContext()
 
-  const [progress, setProgress] = React.useState(0);
-  const [pause, setPause] = React.useState(false)
+  const [ progress, setProgress ] = useState(0);
+  const [ pause, setPause ] = useState(false)
 
-  const [lesson, setLesson] = React.useState(null)
-  let [currentPose, setCurrentPose] = React.useState(0)
-  let [nextPose, setNextPose] = React.useState(currentPose + 1)
-  const [posesArray, setPosesArray] = React.useState([])
-  const [showDialog, setShowDialog] = React.useState(false)
+  const [ lesson, setLesson ] = useState(null)
+  let [ currentPose, setCurrentPose ] = useState(0)
+  let [ nextPose, setNextPose ] = useState(currentPose + 1)
+  const [ posesArray, setPosesArray ] = useState([])
+  const [ showDialog, setShowDialog ] = useState(false)
 
-  React.useEffect(()=> {
+  useEffect(()=> {
     const getLessonsList = async() => {
       const response = await fetch(`http://localhost:8085/api/lessons/${id}`, {
           headers: {
@@ -50,7 +51,7 @@ function Lesson() {
 
   }, [id, user])
 
-  React.useEffect( () => {
+  useEffect( () => {
     const interval = setInterval(() => {
       if(pause) {
         if (progress < 100) {
@@ -91,11 +92,11 @@ function Lesson() {
               alt="asana"
               height="sm"
               image={lesson && `../src/assets/poses/${lesson.poses[currentPose].picture}.png`}
-              sx={{margin: 'auto'}}
+              sx={{margin: 'auto', maxWidth: '300px'}}
           />
 
           <CardContent>
-            <LinearProgress variant="determinate" value={progress} color='secondary'/>
+            <LinearProgress sx={{mb: 2}} variant="determinate" value={progress} color='secondary'/>
             <Typography gutterBottom variant="h5" component="div">
               {lesson && posesArray[currentPose].pose}
             </Typography>

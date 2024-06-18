@@ -13,7 +13,7 @@ export default function EndLessonDialog({dialog}) {
       <DialogContent sx={{textAlign: "center"}}>
         <DialogTitle>Congratulations!</DialogTitle>
         <DialogContentText sx={{pb: "20px"}}>You finished lesson!</DialogContentText>
-        <Button component={Link} to="/">Back to Home Page</Button>
+        <Button color='secondary' component={Link} to="/">Back to Home Page</Button>
       </DialogContent>
     </Dialog>
   </>

@@ -9,10 +9,13 @@ import {
     DialogTitle, 
     DialogContent,
     DialogContentText,
-    DialogActions } from '@mui/material';
+    DialogActions} from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
+
+import { createTheme } from '@mui/material/styles';
 
 import { Link } from "react-router-dom";
 
@@ -24,13 +27,22 @@ import { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
+const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 400,
+      },
+    },
+  });
+
 function LessonCard({lesson}) {
     const { dispatch } = useLessonsContext()
     const { openNotification } = useNotificationContext()
     const { user } = useAuthContext()
         
     const [ preview, setPreview ] = useState(false)
-    const [alert, setAlert] = useState(false)
+    const [ alert, setAlert ] = useState(false)
 
     const deleteLesson = async () => {
         if(!user){
@@ -62,29 +74,29 @@ function LessonCard({lesson}) {
 
     return ( 
         <>
-            <Paper elevation={6} square={false} sx={{p: '10px'}}>
-            <Grid container spacing={2}>
+            <Paper elevation={6} square={false} sx={{p: '10px', wordWrap: 'break-word'}}>
+            <Grid container spacing={2} xs={12} justifyContent='center'>
                 <Grid item xs={12}>
-                    <Typography variant='h6'>
+                    <Typography variant='h6' >
                         {lesson.title}
                     </Typography>
                     <Typography sx={{pt: 1}}>{lesson.description}</Typography>
                 </Grid>
 
-                <Grid item xs={6}>
-                    <ButtonGroup sx={{border: "2px solid", borderColor: "primary.main"}} aria-label="Basic button group" >                        
-                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="edit" component={Link} to={`update/${lesson._id}`}>
+                <Grid item xs='auto' theme={theme} sm={6}>
+                    <ButtonGroup sx={{border: "2px solid", borderColor: "secondary.main"}} aria-label="Basic button group" >                        
+                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='secondary' aria-label="edit" component={Link} to={`update/${lesson._id}`}>
                             <EditIcon/>
                         </IconButton>
-                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='primary' aria-label="delete" onClick={openAlert}>
+                        <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='secondary' aria-label="delete" onClick={openAlert}>
                             <DeleteIcon />
                         </IconButton>
-                        <Button variant="text" onClick={()=> previewLesson()}>Preview</Button>
+                        <Button variant="text" onClick={()=> previewLesson()} color='secondary'>Preview</Button>
                     </ButtonGroup>
                          
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs='auto' theme={theme} sm={6}>
                     <Grid container spacing={2} direction={'row-reverse'}>
                         <Grid item>
                             <Button variant='contained' color='secondary' component={Link} to={`lesson/${lesson._id}`}>Start Lesson</Button>
@@ -94,33 +106,41 @@ function LessonCard({lesson}) {
             </Grid>
             </Paper>
 
-            <Dialog open={preview}>
-                <Button onClick={()=> previewLesson()} color='secondary' variant='outlined'>Close Preview</Button>
-                <DialogTitle>List of asanas for the lesson: {lesson.title}</DialogTitle>
+            <Dialog 
+                open={preview} 
+                onClose={previewLesson} 
+                sx={{wordWrap: 'break-word'}}
+                >
+                <DialogActions sx={{position: 'absolute', right: 0 }} disableSpacing={true}>
+                    <IconButton onClick={()=> previewLesson()} color='secondary' aria-label='close dialog'>
+                        <CloseIcon />
+                    </IconButton>
+                </DialogActions>
+                <DialogTitle mr={4}>List of asanas for the lesson: <Typography color='secondary' fontWeight={500}>{lesson.title}</Typography></DialogTitle>
                 <DialogContent>
-                    {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography key={uuidv4()}>{ind+1}) {pose}</Typography>)}
+                    {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography pt={1} key={uuidv4()}>{ind+1}) {pose}</Typography>)}
                 </DialogContent>            
             </Dialog>
 
             <Dialog
                 open={alert}
                 onClose={openAlert}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                aria-labelledby="Delete-dialog"
+                aria-describedby="Delete-dialog-from-database"
                 >                    
-                <DialogTitle id="alert-dialog-title">
-                    {"Deletion of the lesson"}
+                <DialogTitle id="Delete-dialog-title">
+                    {"Delete lesson"}
                 </DialogTitle>
 
                 <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    Are you sure you want to delete lesson: {lesson.title} ?
+                <DialogContentText id="Delete-dialog-description">
+                    Are you sure you want to delete lesson: <Typography mt={1} color='secondary' fontWeight={500}>{lesson.title}</Typography>
                 </DialogContentText>
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={openAlert}>Disagree</Button>
-                    <Button onClick={deleteLesson}>Agree</Button>
+                    <Button onClick={openAlert} color='secondary' variant='contained'>No, keep it</Button>
+                    <Button onClick={deleteLesson} color='secondary' variant='outlined'>Yes, delete it</Button>
                 </DialogActions>
             </Dialog>            
         </>

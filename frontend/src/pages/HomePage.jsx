@@ -64,7 +64,7 @@ function HomePage() {
                 {(!user && !newUser) && <Login />}
 
                 {user && <>
-                    <Typography>Welcome back {user.email}</Typography>
+                    <Typography>Welcome back <Typography component='span' color='secondary' fontWeight={500}>{user.email}</Typography></Typography>
                     <Typography variant="h4">Your created lessons</Typography>
                     </>
                 }

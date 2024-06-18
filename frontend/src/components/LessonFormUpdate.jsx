@@ -123,7 +123,7 @@ function LessonFormUpdate({id}) {
                     : 
                     <SimpleSlider list={list}/>
                 }
-                <Button onClick={handleUpdate}>Submit the lesson</Button>
+                <Button onClick={handleUpdate} color='secondary' variant='outlined' sx={{alignSelf: 'center', m: 3}}>Update lesson</Button>
             </FormControl>
         </Container>
      );

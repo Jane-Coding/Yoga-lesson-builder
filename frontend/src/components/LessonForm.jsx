@@ -61,7 +61,7 @@ function LessonForm() {
         <Container sx={{mt: '70px'}}>
             <FormControl sx={{width: '100%'}}>
                 <Typography variant='h4' mb={2}>Create new lesson</Typography>
-                <Stack spacing={3}>
+                <Stack spacing={3} pb={3}>
 
                     <TextField 
                         label='Title of the lesson' 
@@ -89,7 +89,8 @@ function LessonForm() {
                 <Typography 
                     sx={{
                     fontWeight: 'bold',
-                    color: emptyFields.includes('poses') ? 'red' : 'black'                    
+                    color: emptyFields.includes('poses') ? 'red' : 'black',
+                    marginBottom: 1
                     }}
                 >Chosen asanas for this lesson: {list.length}</Typography>
 
@@ -99,7 +100,7 @@ function LessonForm() {
                     : 
                     <SimpleSlider list={list}/>
                 }
-                <Button onClick={handleSubmit}>Submit the lesson</Button>
+                <Button onClick={handleSubmit} color='secondary' variant='outlined' sx={{alignSelf: 'center', m: 3}}>Create new lesson</Button>
             </FormControl>
         </Container>
      );
