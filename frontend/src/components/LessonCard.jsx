@@ -75,7 +75,7 @@ function LessonCard({lesson}) {
     return ( 
         <>
             <Paper elevation={6} square={false} sx={{p: '10px', wordWrap: 'break-word'}}>
-            <Grid container spacing={2} xs={12} justifyContent='center'>
+            <Grid container spacing={2} justifyContent='center'>
                 <Grid item xs={12}>
                     <Typography variant='h6' >
                         {lesson.title}
