@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
+import { sound } from '../components/sound';
 import EndLessonDialog from '../components/EndLessonDialog';
 
 import { useParams } from 'react-router-dom';
@@ -58,6 +59,7 @@ function Lesson() {
           setProgress(progress + (100/60))
         }
         else if (progress >= 100) {
+          sound.play()
           setProgress(0)
 
           if (currentPose >= posesArray.length-1){
