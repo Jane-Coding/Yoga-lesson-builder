@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 
-function HomePage() {
+function Home() {
     const {lessons, dispatch} = useLessonsContext()
     const { user } = useAuthContext()
 
@@ -83,4 +83,4 @@ function HomePage() {
     );
 }
 
-export default HomePage;
+export default Home;

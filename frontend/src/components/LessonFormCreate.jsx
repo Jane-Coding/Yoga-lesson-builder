@@ -1,5 +1,5 @@
 import {Container, Stack, TextField, Typography, Button, FormControl} from '@mui/material';
-import SimpleSlider from "../components/SimpleSlider";
+import SimpleSlider from "./SimpleSlider";
 
 import { useCreateLessonContext } from '../hooks/useCreateLessonContext';
 import { useLessonsContext } from '../hooks/useLessonsContext';
@@ -8,7 +8,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 import { useState } from 'react';
 
-function LessonForm() {
+function LessonFormCreate() {
     const { list, dispatch: dispatchList } = useCreateLessonContext()
     const { dispatch } = useLessonsContext()
     const { openNotification } = useNotificationContext()
@@ -106,4 +106,4 @@ function LessonForm() {
      );
 }
 
-export default LessonForm;
+export default LessonFormCreate;

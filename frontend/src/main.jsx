@@ -5,10 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import './fonts.scss';
 
 import AppLayout from './components/AppLayout';
-import HomePage from './pages/HomePage';
+import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
 import Lesson from './pages/Lesson';
-import CreateLessonPage from './pages/CreateLessonPage';
+import CreateLesson from './pages/CreateLesson';
 
 import { LessonContextProvider } from './context/LessonsContext';
 import { NotificationContextProvider } from './context/NotificationContext';
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage/>,
+        element: <Home/>,
         errorElement: <ErrorPage/>
       },
       {
@@ -35,11 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/create",
-        element: <CreateLessonPage/>
+        element: <CreateLesson/>
       },
       {
         path: "/update/:id",
-        element: <CreateLessonPage/>
+        element: <CreateLesson/>
       }
     ]
   }

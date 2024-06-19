@@ -1,6 +1,6 @@
 import { Container, Typography, Grid } from '@mui/material';
 
-import LessonForm from '../components/LessonForm';
+import LessonFormCreate from '../components/LessonFormCreate';
 import AsanaCard from '../components/AsanaCard';
 import LessonFormUpdate from '../components/LessonFormUpdate';
 import Notification from '../components/Notification';
@@ -13,12 +13,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useParams } from 'react-router-dom';
 
-function CreateLessonPage (){
+function CreateLesson (){
     const { id } = useParams()
 
     return (
         <CreateLessonContextProvider>
-            {id ? <LessonFormUpdate id={id}/> : <LessonForm />}
+            {id ? <LessonFormUpdate id={id}/> : <LessonFormCreate />}
             <Container>
                 <Typography sx={{fontWeight: 'bold'}}>Please choose from the list of available poses:</Typography>
                 <Grid container rowGap={2} columnGap={2} mt={1} sx={{justifyContent: 'center', mt: 3, mb: 3}}>
@@ -34,4 +34,4 @@ function CreateLessonPage (){
     )
 }
 
-export default CreateLessonPage;
+export default CreateLesson;

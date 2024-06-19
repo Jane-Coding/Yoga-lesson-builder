@@ -12,7 +12,7 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import { defaultStyle, focusedStyle, focusedWithPasswordStyle } from './styles'
+import { defaultStyle, focusedStyle, focusedWithPasswordStyle } from './inputStyle'
 
 import { useSignup } from '../hooks/useSignup';
 
