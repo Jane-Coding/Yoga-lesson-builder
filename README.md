@@ -1,6 +1,6 @@
 # Constructor of yoga lessons
 
-The idea of the App is to create your own yoga lesson. Lesson consists of list of poses for 1 minute each. After timer runs out, get sound notification to transition to next pose. 
+The idea of the App is to create your own yoga lesson. Lesson consists of list of poses for 1 minute each. After timer runs out, there is a sound notification to transition to next pose. 
 There could be multiple lessons all stored in data base. It is possible to update and delete lessons. 
 App is still in production. For more details please check lists below :point_down:
 
@@ -23,7 +23,8 @@ App is still in production. For more details please check lists below :point_dow
 3. Lesson page:
    - upload lesson from data base
    - control button to start lesson and pause 
-   - timer is set to 1 min to switch to next pose
+   - timer is set to 1 min for one pose
+   - sound notification indicates to switch to next pose
    - after lesson is over show congratulation message and redirect to Home page 
   
 4. Layout:
@@ -39,5 +40,4 @@ App is still in production. For more details please check lists below :point_dow
 
 ### Plans for future updates
 
-1. Redesign
-2. Add sound notification to start next pose
+So far all that was planned was done. 
