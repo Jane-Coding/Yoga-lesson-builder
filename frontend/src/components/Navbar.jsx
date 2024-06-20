@@ -63,9 +63,13 @@ function Navbar() {
                   <MenuItem onClick={handleClose} component={Link} to="/">
                     Home
                   </MenuItem>
-                  <MenuItem onClick={handleClose} component={Link} to="/create">
-                    Create lesson
-                  </MenuItem>
+
+                  {user && 
+                    <MenuItem onClick={handleClose} component={Link} to="/create">
+                      Create lesson
+                    </MenuItem>
+                  }
+
                   <MenuItem onClick={handleClose}>
                     About Me
                   </MenuItem>
@@ -90,9 +94,13 @@ function Navbar() {
                 <Button sx={{color: 'white'}} onClick={handleClose} component={Link} to="/">
                     Home
                   </Button>
-                  <Button sx={{color: 'white'}} onClick={handleClose} component={Link} to="/create">
-                    Create lesson
-                  </Button>
+
+                  {user &&
+                    <Button sx={{color: 'white'}} onClick={handleClose} component={Link} to="/create">
+                      Create lesson
+                    </Button>
+                  }
+                  
                   <Button sx={{color: 'white'}} onClick={handleClose}>
                     About Me
                   </Button>
