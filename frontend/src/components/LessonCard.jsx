@@ -116,8 +116,9 @@ function LessonCard({lesson}) {
                         <CloseIcon />
                     </IconButton>
                 </DialogActions>
-                <DialogTitle mr={4}>List of asanas for the lesson: <Typography color='secondary' fontWeight={500}>{lesson.title}</Typography></DialogTitle>
+                <DialogTitle mr={4}>List of asanas for the lesson: </DialogTitle>
                 <DialogContent>
+                    <Typography color='secondary' fontWeight={500}>{lesson.title}</Typography>
                     {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography pt={1} key={uuidv4()}>{ind+1}) {pose}</Typography>)}
                 </DialogContent>            
             </Dialog>
@@ -134,7 +135,8 @@ function LessonCard({lesson}) {
 
                 <DialogContent>
                 <DialogContentText id="Delete-dialog-description">
-                    Are you sure you want to delete lesson: <Typography mt={1} color='secondary' fontWeight={500}>{lesson.title}</Typography>
+                    Are you sure you want to delete lesson: 
+                    <Typography component='span' sx={{display: 'block', mt: 1, fontWeight: 500}} color='secondary'>{lesson.title}</Typography>
                 </DialogContentText>
                 </DialogContent>
 
