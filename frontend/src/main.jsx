@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
 import Lesson from './pages/Lesson';
 import CreateLesson from './pages/CreateLesson';
+import DefaultLesson from './pages/DefaultLesson';
 
 import { LessonContextProvider } from './context/LessonsContext';
 import { NotificationContextProvider } from './context/NotificationContext';
@@ -18,13 +19,15 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import DefaultLesson from './pages/DefaultLesson';
-
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
+      {
+        path: "*",
+        element: <ErrorPage/>
+      },
       {
         path: "/",
         element: <Home/>,
@@ -33,18 +36,22 @@ const router = createBrowserRouter([
       {
         path: "/lesson/:id",
         element: <Lesson/>,
+        errorElement: <ErrorPage/>
       },
       {
         path: "/create",
-        element: <CreateLesson/>
+        element: <CreateLesson/>,
+        errorElement: <ErrorPage/>
       },
       {
         path: "/update/:id",
-        element: <CreateLesson/>
+        element: <CreateLesson/>,
+        errorElement: <ErrorPage/>
       },
       {
         path: '/default/:id',
-        element: <DefaultLesson/>
+        element: <DefaultLesson/>,
+        errorElement: <ErrorPage/>
       }
     ]
   }
