@@ -1,0 +1,68 @@
+[
+    {
+        "_id": "beginner",
+        "title": "Beginners flow",
+        "description": "Simple asanas to get to know yoga poses",
+        "poses": [      
+            {
+            "pose": "Lotus with salutation seal",
+            "picture": "006"
+            },
+            {
+            "pose": "Upward dog",
+            "picture": "009"
+            },
+            {
+            "pose": "Downward dog",
+            "picture": "018"
+            },
+            {
+            "pose": "Warrior 2",
+            "picture": "001"
+            }
+        ]
+    },
+    {
+        "_id": "intermediate",
+        "title": "Intermediate flow",
+        "description": "Building strength",
+        "poses": [
+            {
+            "pose": "Upward dog",
+            "picture": "009"
+            },
+            {
+            "pose": "Downward dog",
+            "picture": "018"
+            },
+            {
+            "pose": "Warrior 2",
+            "picture": "001"
+            }
+        ]
+    },
+    {
+        "_id": "advanced",
+        "title": "Advanced flow",
+        "description": "For advanced yoga practitioners. Not advised for beginners.",
+        "poses": [
+            {
+            "pose": "Dancer",
+            "picture": "010"
+            },
+            {
+            "pose": "Feathered peacock",
+            "picture": "011"
+            },
+            {
+            "pose": "One-legged king pigeon",
+            "picture": "017"
+            },
+            {
+            "pose": "Monkey",
+            "picture": "015"
+            }
+        ]
+    }
+]
+ 

@@ -6,11 +6,16 @@ import LessonCard from '../components/LessonCard';
 import Notification from '../components/Notification';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import DefaultLessonCard from '../components/DefaultLessonCard';
+
+import defaultLessons from '../db/defaultLessons';
 
 import { useEffect, useState } from 'react';
 
 import { useLessonsContext } from '../hooks/useLessonsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+
+import { v4 as uuidv4 } from 'uuid';
 
 function Home() {
     const {lessons, dispatch} = useLessonsContext()
@@ -76,6 +81,8 @@ function Home() {
                 <Typography variant="h4">
                     Default sessions
                 </Typography>
+
+                {defaultLessons.map(lesson => <DefaultLessonCard key={uuidv4()} lesson={lesson}/>)}
 
             </Stack>
             <Notification />

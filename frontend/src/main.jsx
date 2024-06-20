@@ -18,6 +18,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import DefaultLesson from './pages/DefaultLesson';
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <CreateLesson/>
+      },
+      {
+        path: '/default/:id',
+        element: <DefaultLesson/>
       }
     ]
   }
