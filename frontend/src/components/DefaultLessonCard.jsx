@@ -31,7 +31,7 @@ const theme = createTheme({
 
 function DefaultLessonCard({lesson}) {        
     const [ preview, setPreview ] = useState(false)
-    console.log(lesson)
+    
     function previewLesson () {
         setPreview(!preview)
     }
