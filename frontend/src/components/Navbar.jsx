@@ -70,7 +70,7 @@ function Navbar() {
                     </MenuItem>
                   }
 
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem onClick={handleClose} component={Link} to="/about">
                     About Me
                   </MenuItem>
 
@@ -101,7 +101,7 @@ function Navbar() {
                     </Button>
                   }
                   
-                  <Button sx={{color: 'white'}} onClick={handleClose}>
+                  <Button sx={{color: 'white'}} onClick={handleClose} component={Link} to="/about">
                     About Me
                   </Button>
                   {user && 

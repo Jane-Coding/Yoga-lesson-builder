@@ -10,6 +10,7 @@ import ErrorPage from './pages/ErrorPage';
 import Lesson from './pages/Lesson';
 import CreateLesson from './pages/CreateLesson';
 import DefaultLesson from './pages/DefaultLesson';
+import About from './pages/About';
 
 import { LessonContextProvider } from './context/LessonsContext';
 import { NotificationContextProvider } from './context/NotificationContext';
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
       {
         path: '/default/:id',
         element: <DefaultLesson/>,
+        errorElement: <ErrorPage/>
+      },
+      {
+        path: '/about',
+        element: <About/>,
         errorElement: <ErrorPage/>
       }
     ]
