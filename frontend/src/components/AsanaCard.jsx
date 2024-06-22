@@ -3,7 +3,10 @@ import {
     Card, 
     CardMedia, 
     CardContent, 
-    Button } from "@mui/material";
+    Button 
+} from "@mui/material";
+
+import { getImageURL } from '../utils/useAssets';
 
 const cardStyle = {
     maxWidth: 150,
@@ -16,8 +19,8 @@ const cardStyle = {
 import { useCreateLessonContext } from "../hooks/useCreateLessonContext";
 
 function AsanaCard({link, type}) {
+    const image = getImageURL(link.picture)
 
-    const image = `../src/assets/poses/${link.picture}.png`
     return (
         <Card variant="outlined" sx={cardStyle}>
             <CardContent sx={{ padding: '0'}}>

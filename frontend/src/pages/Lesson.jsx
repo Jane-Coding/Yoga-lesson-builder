@@ -9,13 +9,15 @@ import { Card,
   IconButton 
 } from '@mui/material';
 
-import { useState, useEffect } from 'react';
-
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
-import { sound } from '../components/sound';
+import { sound } from '../utils/sound';
 import EndLessonDialog from '../components/EndLessonDialog';
+
+import { getImageURL } from '../utils/useAssets';
+
+import { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -56,7 +58,7 @@ function Lesson() {
     const interval = setInterval(() => {
       if(pause) {
         if (progress < 100) {
-          setProgress(progress + 50)
+          setProgress(progress + (100/60))
         }
         else if (progress >= 100) {
           sound.play()
@@ -93,9 +95,9 @@ function Lesson() {
               component="img"
               alt="asana"
               height="sm"
-              image={lesson && `../src/assets/poses/${lesson.poses[currentPose].picture}.png`}
+              image={lesson && getImageURL(lesson.poses[currentPose].picture)}
               sx={{margin: 'auto', maxWidth: '300px'}}
-          />
+              />
 
           <CardContent>
             <LinearProgress sx={{mb: 2}} variant="determinate" value={progress} color='secondary'/>

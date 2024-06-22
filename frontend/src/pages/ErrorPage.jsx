@@ -7,7 +7,7 @@ function ErrorPage() {
         <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', mt: '70px'}}>
             <Box 
                 component='img'
-                src='../public/lotus-large.svg'
+                src='/lotus-large.svg'
                 maxHeight={'300px'}
             />
 

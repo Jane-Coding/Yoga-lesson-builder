@@ -14,9 +14,11 @@ import { useState, useEffect } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
-import { sound } from '../components/sound';
+import { sound } from '../utils/sound';
 import EndLessonDialog from '../components/EndLessonDialog';
 import defaultLessons from '../db/defaultLessons';
+
+import { getImageURL } from '../utils/useAssets';
 
 import { useParams } from 'react-router-dom';
   
@@ -75,7 +77,7 @@ function DefaultLesson() {
                 component="img"
                 alt="asana"
                 height="sm"
-                image={lesson && `../src/assets/poses/${lesson.poses[currentPose].picture}.png`}
+                image={getImageURL(lesson.poses[currentPose].picture)}
                 sx={{margin: 'auto', maxWidth: '300px'}}
             />
             
