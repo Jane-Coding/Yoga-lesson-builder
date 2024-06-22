@@ -33,7 +33,7 @@ function Navbar() {
     const { logout } = useLogout()
     const { user } = useAuthContext()
 
-    const mobile = useMediaQuery("(max-width:600px)");
+    const mobile = useMediaQuery("(max-width:599px)");
     const tablet = useMediaQuery("(min-width:600px)");
 
     return (
@@ -83,7 +83,7 @@ function Navbar() {
                 </Menu>
 
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Yoga constructor
+                Yoga lesson builder
                 </Typography>
                 
               </Toolbar>
@@ -110,7 +110,7 @@ function Navbar() {
                     </Button>
                   }
                   <Typography variant="h6" component="div" sx={{ ml: 'auto', p: 2 }}>
-                    Yoga constructor
+                    Yoga lesson builder
                   </Typography>
               </Box>            
             }

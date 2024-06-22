@@ -1,4 +1,4 @@
-# Constructor of yoga lessons
+# Yoga lesson builder
 
 The idea of the App is to create your own yoga lesson. Lesson consists of list of poses for 1 minute each. After timer runs out, there is a sound notification to transition to next pose. 
 There could be multiple lessons all stored in data base. It is possible to update and delete lessons. 
