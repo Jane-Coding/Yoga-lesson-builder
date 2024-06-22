@@ -48,7 +48,7 @@ function DefaultLessonCard({lesson}) {
                 </Grid>
 
                 <Grid item xs='auto' theme={theme} sm={6}>
-                    <ButtonGroup sx={{border: "2px solid", borderColor: "secondary.main"}} aria-label="Basic button group" >
+                    <ButtonGroup sx={{border: "2px solid", borderColor: "secondary.main"}} >
                         <Button variant="text" onClick={()=> previewLesson()} color='secondary'>Preview</Button>
                     </ButtonGroup>                         
                 </Grid>
@@ -67,14 +67,16 @@ function DefaultLessonCard({lesson}) {
                 open={preview} 
                 onClose={previewLesson} 
                 sx={{wordWrap: 'break-word'}}
+                aria-labelledby='dialog-title'
+                aria-describedby='dialog-description'
                 >
-                <DialogActions sx={{position: 'absolute', right: 0 }} disableSpacing={true}>
+                <DialogActions sx={{position: 'absolute', right: 0 }} disableSpacing={true} aria-label='close dialog'>
                     <IconButton onClick={()=> previewLesson()} color='secondary' aria-label='close dialog'>
                         <CloseIcon />
                     </IconButton>
                 </DialogActions>
-                <DialogTitle mr={4}>List of asanas for the lesson: <Typography color='secondary' fontWeight={500}>{lesson.title}</Typography></DialogTitle>
-                <DialogContent>
+                <DialogTitle id='dialog-title' mr={4}>List of asanas for the lesson: <Typography color='secondary' fontWeight={500}>{lesson.title}</Typography></DialogTitle>
+                <DialogContent id='dialog-description'>
                     {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography pt={1} key={uuidv4()}>{ind+1}) {pose}</Typography>)}
                 </DialogContent>            
             </Dialog>

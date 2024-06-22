@@ -84,7 +84,7 @@ function LessonCard({lesson}) {
                 </Grid>
 
                 <Grid item xs='auto' theme={theme} sm={6}>
-                    <ButtonGroup sx={{border: "2px solid", borderColor: "secondary.main"}} aria-label="Basic button group" >                        
+                    <ButtonGroup sx={{border: "2px solid", borderColor: "secondary.main"}} aria-label="Button group">                        
                         <IconButton sx={{borderRight: "2px solid", borderRadius: "0"}} color='secondary' aria-label="edit" component={Link} to={`update/${lesson._id}`}>
                             <EditIcon/>
                         </IconButton>
@@ -110,14 +110,16 @@ function LessonCard({lesson}) {
                 open={preview} 
                 onClose={previewLesson} 
                 sx={{wordWrap: 'break-word'}}
+                aria-labelledby='dialog-title'
+                aria-describedby='dialog-description'
                 >
-                <DialogActions sx={{position: 'absolute', right: 0 }} disableSpacing={true}>
+                <DialogActions sx={{position: 'absolute', right: 0 }} disableSpacing={true} aria-label='close dialog'>
                     <IconButton onClick={()=> previewLesson()} color='secondary' aria-label='close dialog'>
                         <CloseIcon />
                     </IconButton>
                 </DialogActions>
-                <DialogTitle mr={4}>List of asanas for the lesson: </DialogTitle>
-                <DialogContent>
+                <DialogTitle id='dialog-title' mr={4}>List of asanas for the lesson: </DialogTitle>
+                <DialogContent id='dialog-description'>
                     <Typography color='secondary' fontWeight={500}>{lesson.title}</Typography>
                     {lesson && lesson.poses.map(lessonObj=> lessonObj.pose).map((pose, ind)=> <Typography pt={1} key={uuidv4()}>{ind+1}) {pose}</Typography>)}
                 </DialogContent>            
@@ -126,15 +128,15 @@ function LessonCard({lesson}) {
             <Dialog
                 open={alert}
                 onClose={openAlert}
-                aria-labelledby="Delete-dialog"
-                aria-describedby="Delete-dialog-from-database"
+                aria-labelledby="Delete-lesson"
+                aria-describedby="Delete-lesson-from-database"
                 >                    
-                <DialogTitle id="Delete-dialog-title">
+                <DialogTitle id="Delete-lesson">
                     {"Delete lesson"}
                 </DialogTitle>
 
                 <DialogContent>
-                <DialogContentText id="Delete-dialog-description">
+                <DialogContentText id="Delete-lesson-from-database">
                     Are you sure you want to delete lesson: 
                     <Typography component='span' sx={{display: 'block', mt: 1, fontWeight: 500}} color='secondary'>{lesson.title}</Typography>
                 </DialogContentText>

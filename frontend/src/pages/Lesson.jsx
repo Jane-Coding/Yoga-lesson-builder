@@ -56,7 +56,7 @@ function Lesson() {
     const interval = setInterval(() => {
       if(pause) {
         if (progress < 100) {
-          setProgress(progress + (100/60))
+          setProgress(progress + 50)
         }
         else if (progress >= 100) {
           sound.play()

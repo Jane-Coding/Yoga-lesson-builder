@@ -60,10 +60,12 @@ function Login() {
                     required 
                     onChange={(e)=> setEmail(e.target.value)} 
                     value={email}
+                    id="email"
                 ></TextField>
         
                 <InputLabel 
                     htmlFor="password"
+                    aria-label='password'
                     sx={ 
                         !password && !isFocused ? defaultStyle 
                             : !password && isFocused ? focusedStyle
@@ -95,7 +97,13 @@ function Login() {
                     }                    
                 />
                     
-                <Button onClick={handleSubmit} disabled={isLoading} color='secondary' variant='contained'>Log In</Button>
+                <Button 
+                    onClick={handleSubmit} 
+                    disabled={isLoading} 
+                    color='secondary' 
+                    variant='contained' 
+                    aria-label="log in to account"
+                >Log In</Button>
             </FormControl>
         </>
     );

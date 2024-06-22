@@ -59,9 +59,17 @@ function Home() {
                         exclusive
                         onChange={login}
                         size='large'
+                        aria-label="toggle buttons group"
                     >
-                        <ToggleButton value={true}>Sign up</ToggleButton>
-                        <ToggleButton value={false}>Log in</ToggleButton>
+                        <ToggleButton 
+                            value={true}
+                            aria-label="choose sign up"
+                        >Sign up</ToggleButton>
+
+                        <ToggleButton 
+                            value={false} 
+                            aria-label="choose login option"
+                        >Log in</ToggleButton>
                     </ToggleButtonGroup>
                 }
 
