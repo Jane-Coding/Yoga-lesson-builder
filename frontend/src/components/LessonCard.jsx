@@ -49,7 +49,7 @@ function LessonCard({lesson}) {
             return 
         }
 
-        const response = await fetch('http://localhost:8085/api/lessons/' + lesson._id, {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL +'/api/lessons/' + lesson._id, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${user.token}`

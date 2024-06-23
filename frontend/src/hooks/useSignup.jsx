@@ -13,7 +13,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('http://localhost:8085/api/user/signup', {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + '/api/user/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})

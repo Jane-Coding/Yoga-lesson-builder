@@ -29,7 +29,7 @@ function LessonFormCreate() {
         
         const lesson = {title, description, poses: list}
 
-        const response = await fetch('http://localhost:8085/api/lessons', {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + '/api/lessons', {
             method: 'POST',
             body: JSON.stringify(lesson),
             headers: {

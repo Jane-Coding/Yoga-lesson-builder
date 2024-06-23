@@ -25,7 +25,7 @@ function LessonFormUpdate({id}) {
 
     React.useEffect(()=> {
         const getLesson = async() => {
-        const response = await fetch(`http://localhost:8085/api/lessons/${id}`, {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + `/api/lessons/${id}`, {
             headers: {
                 'Authorization': `Bearer ${user.token}`
             }
@@ -57,7 +57,7 @@ function LessonFormUpdate({id}) {
             return 
         }
 
-        const response = await fetch(`http://localhost:8085/api/lessons/${id}`, {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + `/api/lessons/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(updatedLesson),
             headers: {

@@ -25,7 +25,7 @@ function Home() {
 
     useEffect(() => {
         const getLessonsList = async () => {
-            const response = await fetch('http://localhost:8085/api/lessons', {
+            const response = await fetch(import.meta.env.VITE_SERVER_URL + '/api/lessons', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
