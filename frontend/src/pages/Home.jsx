@@ -76,18 +76,25 @@ function Home() {
                 {(!user && newUser) && <Signup />}
                 {(!user && !newUser) && <Login />}
 
-                {user && <>
+                {user &&
                     <Typography>Welcome back <Typography component='span' color='secondary' fontWeight={500}>{user.email}</Typography></Typography>
+                }
+
+                {user && lessons.length === 0 && 
+                    <Typography>Please create your first lesson or try default lessons provided below</Typography>
+                }
+
+                {user && lessons.length !== 0 &&
+                    <>
                     <Typography variant="h4">Your created lessons</Typography>
+                    {lessons.map(lesson => 
+                        <LessonCard key={lesson._id} lesson={lesson}></LessonCard>
+                    )}
                     </>
                 }
 
-                {lessons && lessons.map(lesson => 
-                    <LessonCard key={lesson._id} lesson={lesson}></LessonCard>
-                )}
-
                 <Typography variant="h4">
-                    Default sessions
+                    Default lessons
                 </Typography>
 
                 {defaultLessons.map(lesson => <DefaultLessonCard key={uuidv4()} lesson={lesson}/>)}

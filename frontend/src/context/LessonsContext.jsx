@@ -26,7 +26,7 @@ export const lessonsReducer = (state, action) => {
 }
 
 export const LessonContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(lessonsReducer, { lessons: null })
+    const [state, dispatch] = useReducer(lessonsReducer, { lessons: [] })
 
     return (
         <LessonsContext.Provider value={{...state, dispatch}}>
