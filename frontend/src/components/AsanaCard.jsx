@@ -3,8 +3,11 @@ import {
     Card, 
     CardMedia, 
     CardContent, 
-    Button 
+    Button,
+    IconButton,
 } from "@mui/material";
+
+import CloseIcon from '@mui/icons-material/Close';
 
 import { getImageURL } from '../utils/useAssets';
 
@@ -14,6 +17,15 @@ const cardStyle = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    position: 'relative',
+}
+
+const deleteButtonStyle = {
+    position: 'absolute',
+    right: 0,
+    minWidth: '24px',
+    padding: 0,
+    borderRadius: '30px',
 }
 
 import { useCreateLessonContext } from "../hooks/useCreateLessonContext";
@@ -45,6 +57,14 @@ function AddButton ({link}) {
 function DeleteButton ({link, uuid}) {
     const {dispatch} = useCreateLessonContext()
     return (
-        <Button variant="outlined" color="secondary" onClick={()=> dispatch({type: `DELETE_ASANA`, payload: link, uuid: uuid})}>DELETE LESSON</Button>
+        <Button variant="contained" color="secondary" sx={deleteButtonStyle}>
+            <IconButton 
+                onClick={()=> dispatch({type: `DELETE_ASANA`, payload: link, uuid: uuid})}
+                sx={{color: 'white', padding: 0}}
+                aria-label='delete asana'
+            >
+                <CloseIcon />
+            </IconButton>
+        </Button>
     )
 }
