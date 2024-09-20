@@ -6,7 +6,8 @@ import { Card,
   Container, 
   Box, 
   LinearProgress, 
-  IconButton 
+  IconButton,
+  Skeleton
 } from '@mui/material';
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -91,18 +92,19 @@ function Lesson() {
       <>
       <Container maxWidth='sm'>
         <Card sx={{ maxWidth: "sm" , mt: "150px", }} >
-          <CardMedia
-              component="img"
-              alt="asana"
-              height="sm"
-              image={lesson && getImageURL(lesson.poses[currentPose].picture)}
-              sx={{margin: 'auto', maxWidth: '300px'}}
-              />
-
+          {!lesson ? <Skeleton variant="rectangular" width={300} height={300} sx={{margin: 'auto'}} animation="wave"/> : 
+            <CardMedia 
+              component="img" 
+              alt="asana" 
+              height="sm" 
+              image={lesson && getImageURL(lesson.poses[currentPose].picture)} 
+              sx={{margin: 'auto', maxWidth: '300px'}} 
+            />
+          } 
           <CardContent>
             <LinearProgress sx={{mb: 2}} variant="determinate" value={progress} color='secondary'/>
             <Typography gutterBottom variant="h5" component="div">
-              {lesson && posesArray[currentPose].pose}
+              {!lesson ? <Skeleton animation="wave"/> : posesArray[currentPose].pose}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {'Next pose: '} 
