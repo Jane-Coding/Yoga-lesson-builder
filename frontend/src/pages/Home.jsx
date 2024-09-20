@@ -2,7 +2,7 @@ import { Typography, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
-import LessonCard from '../components/LessonCard';
+import UserLessons from '../components/UserLessons';
 import Notification from '../components/Notification';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
@@ -76,22 +76,7 @@ function Home() {
                 {(!user && newUser) && <Signup />}
                 {(!user && !newUser) && <Login />}
 
-                {user &&
-                    <Typography>Welcome back <Typography component='span' color='secondary' fontWeight={500}>{user.email}</Typography></Typography>
-                }
-
-                {user && lessons.length === 0 && 
-                    <Typography>Please create your first lesson or try default lessons provided below</Typography>
-                }
-
-                {user && lessons.length !== 0 &&
-                    <>
-                    <Typography variant="h4">Your created lessons</Typography>
-                    {lessons.map(lesson => 
-                        <LessonCard key={lesson._id} lesson={lesson}></LessonCard>
-                    )}
-                    </>
-                }
+                {user && lessons && <UserLessons user={user} lessons={lessons}/>}                
 
                 <Typography variant="h4">
                     Default lessons
