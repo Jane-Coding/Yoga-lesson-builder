@@ -44,7 +44,9 @@ function Home() {
     }, [dispatch, user])
 
     const login = (event, update) => {
-        setNewUser(update)
+        if(update !== null){
+            setNewUser(update)
+        }
     }
 
     return (
